@@ -1,7 +1,7 @@
 package org.codelab.softwaresol.services;
 
-import org.codelab.softwaresol.entities.Producto;
-import org.codelab.softwaresol.repositories.ProductoRepository;
+import org.codelab.softwaresol.model.domain.producto.Producto;
+import org.codelab.softwaresol.repos.ProductoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
