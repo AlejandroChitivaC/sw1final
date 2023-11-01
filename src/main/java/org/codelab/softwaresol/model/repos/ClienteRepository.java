@@ -1,4 +1,4 @@
-package org.codelab.softwaresol.repos;
+package org.codelab.softwaresol.model.repos;
 
 import org.codelab.softwaresol.model.domain.cliente.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
