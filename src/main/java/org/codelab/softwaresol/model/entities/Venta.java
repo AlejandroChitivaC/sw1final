@@ -29,4 +29,10 @@ public class Venta {
     @Column(name = "total_venta")
     private Integer totalVenta;
 
+    public Venta(Integer id, Cliente idCliente, LocalDate fechaVenta, Integer totalVenta) {
+        this.id = id;
+        this.idCliente = idCliente;
+        this.fechaVenta = fechaVenta;
+        this.totalVenta = totalVenta;
+    }
 }
