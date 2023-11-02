@@ -1,9 +1,10 @@
 //package org.codelab.softwaresol.services;
 //
 //import org.codelab.softwaresol.model.domain.producto.Producto;
-//import org.codelab.softwaresol.model.repos.ProductoRepository;
+//import org.codelab.softwaresol.repos.ProductoRepository;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.stereotype.Service;
+//
 //
 //import java.util.List;
 //

@@ -1,4 +1,4 @@
-package org.codelab.softwaresol.repos;
+package org.codelab.softwaresol.model.domain.repos;
 
 import org.codelab.softwaresol.model.domain.detalles.DetalleOrdenProveedor;
 import org.springframework.data.jpa.repository.JpaRepository;

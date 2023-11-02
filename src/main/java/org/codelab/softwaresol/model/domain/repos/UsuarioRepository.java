@@ -1,4 +1,4 @@
-package org.codelab.softwaresol.model.repos;
+package org.codelab.softwaresol.model.domain.repos;
 
 import org.codelab.softwaresol.model.domain.user.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
