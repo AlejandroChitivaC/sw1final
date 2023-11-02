@@ -1,8 +1,8 @@
 package org.codelab.softwaresol.controllers;
 
-import org.codelab.softwaresol.model.domain.user.LoginData;
-import org.codelab.softwaresol.model.domain.user.Usuario;
-import org.codelab.softwaresol.model.domain.repos.UsuarioRepository;
+import org.codelab.softwaresol.model.entities.user.LoginData;
+import org.codelab.softwaresol.model.entities.user.Usuario;
+import org.codelab.softwaresol.model.entities.repos.UsuarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

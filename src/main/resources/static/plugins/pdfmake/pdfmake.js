@@ -38883,8 +38883,8 @@ var NullProtoObjectViaIFrame = function () {
   return iframeDocument.F;
 };
 
-// Check for document.domain and active x support
-// No need to use active x approach when document.domain is not set
+// Check for document.entities and active x support
+// No need to use active x approach when document.entities is not set
 // see https://github.com/es-shims/es5-shim/issues/150
 // variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
 // avoid IE GC bug
@@ -76990,8 +76990,8 @@ module.exports = PdfPrinter;
 /* qr.js -- QR code generator in Javascript (revision 2011-01-19)
  * Written by Kang Seonghoon <public+qrjs@mearie.org>.
  *
- * This source code is in the public domain; if your jurisdiction does not
- * recognize the public domain the terms of Creative Commons CC0 license
+ * This source code is in the public entities; if your jurisdiction does not
+ * recognize the public entities the terms of Creative Commons CC0 license
  * apply. In the other words, you can always do what you want.
  */
 

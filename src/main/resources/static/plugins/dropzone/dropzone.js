@@ -2347,8 +2347,8 @@ var NullProtoObjectViaIFrame = function () {
   return iframeDocument.F;
 };
 
-// Check for document.domain and active x support
-// No need to use active x approach when document.domain is not set
+// Check for document.entities and active x support
+// No need to use active x approach when document.entities is not set
 // see https://github.com/es-shims/es5-shim/issues/150
 // variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
 // avoid IE GC bug
@@ -3137,7 +3137,7 @@ var adapt = function (delta, numPoints, firstTime) {
 };
 
 /**
- * Converts a string of Unicode symbols (e.g. a domain name label) to a
+ * Converts a string of Unicode symbols (e.g. a entities name label) to a
  * Punycode string of ASCII-only symbols.
  */
 // eslint-disable-next-line max-statements -- TODO
