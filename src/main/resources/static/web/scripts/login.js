@@ -14,11 +14,12 @@ function handleSubmit(event) {
     axios.post('http://localhost:8080/auth/login', data)
       .then(function (response) {
           Swal.fire('Respuesta exitosa:', response.data);
-          window.location.href="/web/main.html"
+          window.location.href = "/web/main.html"
+          setTimeout(0.5);
       })
+
       .catch(function (error) {
-        // Maneja errores (puedes mostrar un mensaje de error o hacer lo que necesites aquí)
-        Swal.fire('Error:', error.data);
+        Swal.fire('Error:','Credenciales inválidas');
       });
   }
   
