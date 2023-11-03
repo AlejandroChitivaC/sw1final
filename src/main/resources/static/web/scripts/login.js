@@ -10,7 +10,7 @@ function handleSubmit(event) {
       pass: pass
     };
   
-    // Realiza la solicitud POST
+    // Realiza la solicitud POST al Endpoint
     axios.post('http://localhost:8080/auth/login', data)
       .then(function (response) {
           Swal.fire('Respuesta exitosa:', response.data);
