@@ -46,6 +46,9 @@ public class Usuario {
         this.estado = estado;
     }
 
+    public Usuario() {
+    }
+
     public String getPassword() {
         return contraseña;
     }
