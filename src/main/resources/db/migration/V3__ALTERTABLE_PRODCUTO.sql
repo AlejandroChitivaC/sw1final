@@ -1,0 +1,1 @@
+ALTER TABLE `bd_rosita`.`producto` ADD COLUMN iva float;

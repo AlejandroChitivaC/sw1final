@@ -3,7 +3,6 @@ package org.codelab.softwaresol.model.entities.detalles;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.codelab.softwaresol.model.entities.producto.Producto;
 import org.codelab.softwaresol.model.entities.Venta;
 
 @Getter
