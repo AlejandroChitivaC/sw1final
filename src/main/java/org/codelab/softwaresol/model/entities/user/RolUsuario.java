@@ -7,9 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "rol_usuario", indexes = {
-        @Index(name = "id_usuario", columnList = "id_usuario")
-})
+@Table(name = "rol_usuario", schema = "bd_rosita")
 public class RolUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +16,5 @@ public class RolUsuario {
 
     @Column(name = "nombre_rol", length = 20)
     private String nombreRol;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario")
-    private Usuario idUsuario;
 
 }
