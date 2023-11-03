@@ -1,14 +1,4 @@
-// var user = document.getElementById('username').value;
-// var pass = document.getElementById('pass').value;
-// var btn = document.getElementById('submit')
 
-// const data = {
-//     username: user,
-//     pass: pass
-// };
-
-
-// Función que se ejecutará cuando se envíe el formulario
 function handleSubmit(event) {
     event.preventDefault(); // Evita que el formulario se envíe
   
