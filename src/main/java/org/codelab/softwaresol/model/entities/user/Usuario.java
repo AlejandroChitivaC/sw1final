@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario", schema = "bd_rosita")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,11 @@ public class Usuario {
     @Column(name = "estado", length = 1)
     private String estado;
 
-    public Usuario(Integer id, String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String estado) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_rol")
+    private RolUsuario idRol;
+
+    public Usuario(Integer id, String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String estado, RolUsuario idRol) {
         this.id = id;
         this.usuario = usuario;
         this.contraseña = contraseña;
@@ -44,11 +48,12 @@ public class Usuario {
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.estado = estado;
+        this.idRol = idRol;
     }
 
     public Usuario() {
-    }
 
+    }
     public String getPassword() {
         return contraseña;
     }

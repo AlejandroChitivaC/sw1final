@@ -35,4 +35,8 @@ public class Venta {
         this.fechaVenta = fechaVenta;
         this.totalVenta = totalVenta;
     }
+
+    public Venta() {
+
+    }
 }
