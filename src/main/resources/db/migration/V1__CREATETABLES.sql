@@ -32,6 +32,7 @@ CREATE TABLE bd_rosita.producto
     stock_min       INT(10),
     stock_max       INT(10),
     existencia      INT(10),
+    iva             FLOAT,
     estado          VARCHAR(1)
 );
 
@@ -64,11 +65,7 @@ CREATE TABLE bd_rosita.detalle_cliente
     FOREIGN KEY (id_cliente) REFERENCES bd_rosita.cliente (id_cliente),
     FOREIGN KEY (id_ciudad) REFERENCES bd_rosita.ciudad (id_ciudad)
 );
-CREATE TABLE bd_rosita.rol_usuario
-(
-    id_rol     INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_rol VARCHAR(20)
-);
+
 
 CREATE TABLE bd_rosita.usuario
 (
@@ -80,8 +77,8 @@ CREATE TABLE bd_rosita.usuario
     primer_apellido  VARCHAR(20),
     segundo_apellido VARCHAR(20),
     estado           VARCHAR(1),
-    id_rol           INT(10)     not null,
-    FOREIGN KEY (id_rol) REFERENCES bd_rosita.rol_usuario (id_rol)
+    rol              VARCHAR(25) not null
+
 );
 
 
