@@ -3,6 +3,7 @@ package org.codelab.softwaresol.model.entities.user;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.codelab.softwaresol.model.entities.repos.UsuarioRepository;
 
 @Getter
 @Setter
@@ -35,11 +36,11 @@ public class Usuario {
     @Column(name = "estado", length = 1)
     private String estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_rol")
-    private RolUsuario idRol;
 
-    public Usuario(Integer id, String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String estado, RolUsuario idRol) {
+    @Column(name = "rol", length = 25)
+    private String rol;
+
+    public Usuario(Integer id, String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String estado, String rol) {
         this.id = id;
         this.usuario = usuario;
         this.contraseña = contraseña;
@@ -48,13 +49,15 @@ public class Usuario {
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.estado = estado;
-        this.idRol = idRol;
+        this.rol = rol;
     }
 
     public Usuario() {
 
     }
+
     public String getPassword() {
         return contraseña;
     }
+
 }
