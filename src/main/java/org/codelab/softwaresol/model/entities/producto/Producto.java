@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "producto")
+@Table(name = "producto", schema = "bd_rosita")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,16 +32,7 @@ public class Producto {
     @Column(name = "estado", length = 1)
     private String estado;
 
-    public Producto(Integer id, String nombreProducto, Integer precioVenta, Integer stockMin, Integer stockMax, Integer existencia, String estado) {
-        this.id = id;
-        this.nombreProducto = nombreProducto;
-        this.precioVenta = precioVenta;
-        this.stockMin = stockMin;
-        this.stockMax = stockMax;
-        this.existencia = existencia;
-        this.estado = estado;
-    }
+    @Column(name = "iva")
+    private Float iva;
 
-    public Producto() {
-    }
 }
