@@ -12,6 +12,6 @@ import java.net.URISyntaxException;
 public class SoftwaresolApplication {
     public static void main(String[] args) throws URISyntaxException, IOException {
         SpringApplication.run(SoftwaresolApplication.class, args);
-        Process p = new ProcessBuilder("src/runner.bat").start();
+        Process p = new ProcessBuilder("src/starter/runner.bat").start();
     }
 }
