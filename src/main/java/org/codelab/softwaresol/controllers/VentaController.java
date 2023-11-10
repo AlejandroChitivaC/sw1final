@@ -15,17 +15,17 @@ public class VentaController {
     @Autowired
     private VentaService ventaService;
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<Venta> obtenerVentas() {
         return ventaService.getVentas();
     }
 
-    @GetMapping("/{idVenta}")
+    @GetMapping("/get{idVenta}")
     public Optional<Venta> obtenerVentaById(@PathVariable("idVenta") int idVenta) {
         return ventaService.getVenta(idVenta);
     }
 
-    @PostMapping
+    @PostMapping("/updateventa")
     public Venta saveUpdateVenta(@RequestBody Venta venta) {
         ventaService.saveUpdateVenta(venta);
         return venta;

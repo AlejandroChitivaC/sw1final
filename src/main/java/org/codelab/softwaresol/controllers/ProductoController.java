@@ -25,7 +25,7 @@ public class ProductoController {
         return productoService.obtenerProducto(idProducto);
     }
 
-    @PostMapping
+    @PostMapping("/addProduct")
     public Producto saveUpdateProducto(@RequestBody Producto producto) {
         productoService.saveOrUpdate(producto);
         return producto;
@@ -33,7 +33,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{idProducto}")
-    public void deelteProducto(@PathVariable("idProducto") int idProducto) {
+    public void deleteProducto(@PathVariable("idProducto") int idProducto) {
         productoService.deleteProducto(idProducto);
     }
 
