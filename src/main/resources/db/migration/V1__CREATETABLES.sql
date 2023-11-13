@@ -119,13 +119,14 @@ CREATE TABLE bd_rosita.orden_proveedor
     FOREIGN KEY (id_estado) REFERENCES bd_rosita.estado_proveedor (id_estado)
 );
 
-CREATE TABLE bd_rosita.detalle_orden_proveedor
+CREATE TABLE bd_rosita.compra_producto
 (
     id_detalle_orden_proveedor INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_orden_proveedor         INT(10),
     id_prod_prov               INT(10),
     cantidad                   INT,
     precio_compra              INT,
+    estado_compra              VARCHAR(1),
     FOREIGN KEY (id_orden_proveedor) REFERENCES bd_rosita.orden_proveedor (id_orden_proveedor),
     FOREIGN KEY (id_prod_prov) REFERENCES bd_rosita.producto_proveedor (id_prod_prov)
 );
