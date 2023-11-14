@@ -1,11 +1,7 @@
 package org.codelab.softwaresol.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "pais")
 public class Pais {
@@ -17,4 +13,22 @@ public class Pais {
     @Column(name = "nombre", length = 25)
     private String nombre;
 
+    public Pais() {}
+
+    //Getters and setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Lista de Países</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<h1>Lista de Países</h1>
+	<table id="tblPaises" class="mostrar">
+		<thead>
+			<th>ID</th>
+			<th>NOMBRE</th>
+			<th id="btnAddCountry" class="btn"><span>+</span></th>
+		</thead>
+		<tbody id="tbodyPaises"></tbody>
+	</table>
+	
+	<div id="frmPaises" class="ocultar">
+		<form>
+		<br></br>
+			<div id="divId">
+				<label>ID</label>
+				<input type="text" id="id" disabled />
+			</div>
+			<div>
+				<label>NOMBRE</label>
+				<input type="text" id="nombre"/>
+			</div>
+			<div>
+				<input type="button" id="btnEnviar" value="Enviar"/>
+			</div>
+			<div>
+				<input type="button" id="btnCancelar" value="Cancelar"/>
+			</div>
+		</form>
+	</div>
+	
+	<script src="../assets/jquery-3.7.1.min.js"></script>
+	<script src="paises.jquery.js"></script>
+</body>
+</html>

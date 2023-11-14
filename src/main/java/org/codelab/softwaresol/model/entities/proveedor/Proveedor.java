@@ -1,5 +1,6 @@
 package org.codelab.softwaresol.model.entities.proveedor;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,9 +18,10 @@ public class Proveedor {
     @Column(name = "id_prov", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_ciudad")
-    private Ciudad idCiudad;
+    @ManyToOne
+    @JoinColumn(name = "id_ciudad", nullable = false)
+    //@JsonIgnoreProperties
+    private Ciudad ciudad;
 
     @Column(name = "nombre", length = 40)
     private String nombre;
@@ -39,9 +41,9 @@ public class Proveedor {
     @Column(name = "estado", length = 1)
     private String estado;
 
-    public Proveedor(Integer id, Ciudad idCiudad, String nombre, String nit, String correo, String telefono, String direccion, String estado) {
+    public Proveedor(Integer id, Ciudad ciudad, String nombre, String nit, String correo, String telefono, String direccion, String estado) {
         this.id = id;
-        this.idCiudad = idCiudad;
+        this.ciudad = ciudad;
         this.nombre = nombre;
         this.nit = nit;
         this.correo = correo;
