@@ -1,19 +1,16 @@
-package org.codelab.softwaresol.model.entities.detalles;
+package org.codelab.softwaresol.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.codelab.softwaresol.model.entities.proveedor.OrdenProveedor;
 import org.codelab.softwaresol.model.entities.producto.ProductoProveedor;
+import org.codelab.softwaresol.model.entities.proveedor.OrdenProveedor;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "detalle_orden_proveedor", indexes = {
-        @Index(name = "id_orden_proveedor", columnList = "id_orden_proveedor"),
-        @Index(name = "id_prod_prov", columnList = "id_prod_prov")
-})
-public class DetalleOrdenProveedor {
+@Table(name = "compra_producto", schema = "bd_rosita")
+public class CompraProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle_orden_proveedor", nullable = false)
@@ -32,5 +29,8 @@ public class DetalleOrdenProveedor {
 
     @Column(name = "precio_compra")
     private Integer precioCompra;
+
+    @Column(name = "estado_compra", length = 1)
+    private String estadoCompra;
 
 }
