@@ -1,3 +1,5 @@
+const { data } = require("jquery");
+
 document.addEventListener("DOMContentLoaded", function () {
     // Realiza una solicitud GET para obtener la lista de usuarios desde tu API
     axios.get('http://localhost:8080/api/user/getUsers2')
@@ -24,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Agrega un botón "Eliminar" en la última celda de la fila
                 var deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Eliminar';
+                deleteButton.textContent = 'Editar';
+                deleteButton.className='btn btn-danger';
                 deleteButton.addEventListener('click', function () {
                     deleteUser(user.id); // Llama a la función de eliminación
                 });
