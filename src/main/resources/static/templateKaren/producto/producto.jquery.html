@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Lista de Países</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<h1>Lista de Países</h1>
+	<table id="tblProductos" class="mostrar">
+		<thead>
+			<th>ID</th>
+			<th>NOMBRE</th>
+            <th>PRECIO VENTA</th>
+            <th>STOCK MINIMO</th>
+            <th>STOCK MAXIMO</th>
+            <th>EXISTENCIA</th>
+            <th>ESTADO</th>
+            <th>IVA</th>
+			<th id="btnAdd" class="btn"><span>+</span></th>
+		</thead>
+		<tbody id="tbody"></tbody>
+	</table>
+	
+	<div id="frmProductos" class="ocultar">
+		<form>
+		<br></br>
+			<div id="divId">
+				<label>ID</label>
+				<input type="text" id="id" disabled />
+			</div>
+			<div>
+				<label>NOMBRE</label>
+				<input type="text" id="nombreProducto"/>
+			</div>
+            <div>
+				<label>PRECIO VENTA</label>
+				<input type="text" id="precioVenta"/>
+			</div>
+            <div>
+				<label>STOCK MINIMO</label>
+				<input type="text" id="stockMin"/>
+			</div>
+            <div>
+				<label>STOCK MAXIMO</label>
+				<input type="text" id="stockMax"/>
+			</div>
+            <div>
+				<label>EXISTENCIA</label>
+				<input type="text" id="existencia"/>
+			</div>
+            <div>
+				<label>IVA</label>
+				<input type="text" id="iva"/>
+			</div>
+			<div>
+				<input type="button" id="btnEnviar" value="Enviar"/>
+			</div>
+			<div>
+				<input type="button" id="btnCancelar" value="Cancelar"/>
+			</div>
+		</form>
+	</div>
+	
+	<script src="../assets/jquery-3.7.1.min.js"></script>
+	<script src="producto.jquery.js"></script>
+</body>
+</html>
