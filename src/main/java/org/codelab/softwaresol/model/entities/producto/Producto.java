@@ -28,11 +28,73 @@ public class Producto {
 
     @Column(name = "existencia")
     private Integer existencia;
-
+    @Column(name = "iva")
+    private Float iva;
     @Column(name = "estado", length = 1)
     private String estado;
 
-    @Column(name = "iva")
-    private Float iva;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public Integer getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(Integer precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public Integer getStockMin() {
+        return stockMin;
+    }
+
+    public void setStockMin(Integer stockMin) {
+        this.stockMin = stockMin;
+    }
+
+    public Integer getStockMax() {
+        return stockMax;
+    }
+
+    public void setStockMax(Integer stockMax) {
+        this.stockMax = stockMax;
+    }
+
+    public Integer getExistencia() {
+        return existencia;
+    }
+
+    public void setExistencia(Integer existencia) {
+        this.existencia = existencia;
+    }
+
+    public Float getIva() {
+        return iva;
+    }
+
+    public void setIva(Float iva) {
+        this.iva = iva;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Usuarios</title>
+    <title>Productos</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -423,10 +423,10 @@
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-table"></i>
                             <p>
-                                Tables
+                              Datatable
                                 <i class="fas fa-angle-left right"></i>
                             </p>
-                        </a>
+                          </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="../tables/simple.html" class="nav-link">
@@ -864,17 +864,17 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="userTable"  class="table table-bordered table-striped">
+                                <table id="productoTable"  class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Usuario</th>
-                                        <th>Primer Nombre</th>
-                                        <th>Segundo Nombre</th>
-                                        <th>Primer Apellido</th>
-                                        <th>Segundo Apellido</th>
+                                        <th>Nombre </th>
+                                        <th>Precio </th>
+                                        <th>Stock minimo</th>
+                                        <th>Stock maximo</th>
+                                        <th>Existencia</th>
+                                        <th>Iva</th>
                                         <th>Estado</th>
-                                        <th>Rol</th>
                                         <th>Acciones</th>
                                     </tr>
                                     </thead>
@@ -936,7 +936,7 @@
         $("#example1").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#userTable_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
             "lengthChange": false,
@@ -948,11 +948,11 @@
         });
     });
 </script>
-<script src="/web/scripts/user.js"></script>
+<script src="/web/scripts/product.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="/web/scripts/user.js"></script>
+<script src="/web/scripts/product.js"></script>
 
 </body>
 </html>
