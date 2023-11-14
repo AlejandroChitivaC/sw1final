@@ -1,6 +1,7 @@
 package org.codelab.softwaresol.controllers;
 
 import org.codelab.softwaresol.model.entities.producto.Producto;
+import org.codelab.softwaresol.model.entities.repos.ProductoRepository;
 import org.codelab.softwaresol.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,18 +15,35 @@ import java.util.Optional;
 @RequestMapping("/api/producto")
 public class ProductoController {
 
+
     @Autowired
-    private AuthController auth;
+    private ProductoRepository productoRepository;
+
+ //   @Autowired
+ //   private AuthController auth;
 
     @Autowired
     public ProductoService productoService;
 
-    @GetMapping("/")
-    public String showProducts(Model modelo) {
+    @GetMapping("/getProducts")
+    public String showProducts(Model model) {
         List<Producto> listProductos = productoService.obtenerProductos();
-        modelo.addAttribute("listProductos", listProductos);
-        return "showProduct";
+        model.addAttribute("listProductos", listProductos);
+        return "static/web/users/showProduct.html";
     }
+
+    @GetMapping("/getProducts3")
+    public String showProducts3(Model model) {
+        List<Producto> listProductos = productoService.obtenerProductos();
+        model.addAttribute("listProductos", listProductos);
+        return "static/pages/tables/data.html";
+    }
+
+    @GetMapping("/getProducts2")
+    public List<Producto>listaProductos(){
+        return this.productoService.obtenerProductos();
+    }
+
 
     @GetMapping("/{idProducto}")
     public Optional<Producto> obtenerProducto(@PathVariable("idProducto") int idProducto) {
