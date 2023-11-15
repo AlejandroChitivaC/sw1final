@@ -9,7 +9,7 @@ processGet = (ciudades) => {
 		let tr = $("<tr></tr>");
 		tr.append("<tr><td colspan = '3'>No se encontraron ciudades</td></tr>");
 		tbody.append(tr);
-	} 
+	}
 	else {
 		ciudades.forEach (ciudad => {
 			tbody.append(createTr(ciudad));

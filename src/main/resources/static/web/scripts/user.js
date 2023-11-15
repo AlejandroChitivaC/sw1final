@@ -1,6 +1,20 @@
-const { data } = require("jquery");
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded",
+$(function () {
+    $("#userTable").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#content_wrapper .col-md-6:eq(0)');
+    $('#userTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+}),
+    function () {
     // Realiza una solicitud GET para obtener la lista de usuarios desde tu API
     axios.get('http://localhost:8080/api/user/getUsers2')
         .then(function (response) {
@@ -26,12 +40,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Agrega un botón "Eliminar" en la última celda de la fila
                 var deleteButton = document.createElement('button');
+                var editIcon = document.createElement('i');
+                editIcon.className = 'fas fa-pen';
                 deleteButton.textContent = 'Editar';
-                deleteButton.className='btn btn-danger';
+                deleteButton.className = 'btn btn-danger';
+                deleteButton.appendChild(editIcon);
                 deleteButton.addEventListener('click', function () {
-                    deleteUser(user.id); // Llama a la función de eliminación
+                    deleteUser(user.id);
                 });
                 row.insertCell(8).appendChild(deleteButton);
+                row.insertCell(8).appendChild(editButton);
+
             });
         })
         .catch(function (error) {
