@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Lista de Clientes</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<h1>Lista de Clientes</h1>
+	<table id="tblClientes" class="mostrar">
+		<thead>
+			<th>ID</th>
+			<th>NOMBRE</th>
+			<th>NIT</th>
+			<th>ESTADO</th>
+			<th id="btnAdd" class="btn"><span>+</span></th>
+		</thead>
+		<tbody id="tbodyClientes"></tbody>
+	</table>
+	
+	<div id="frmClientes" class="ocultar">
+		<form>
+		<br></br>
+			<div id="divId">
+				<label>ID</label>
+				<input type="text" id="id" disabled />
+			</div>
+			<div>
+				<label>NOMBRE</label>
+				<input type="text" id="nombre"/>
+			</div>
+			<div>
+				<label>NIT</label>
+				<input type="text" id="nit"/>
+			</div>
+			<div>
+				<label>ESTADO</label>
+				<input type="text" id="estado"/>
+			</div>
+			<div>
+				<input type="button" id="btnEnviar" value="Enviar"/>
+			</div>
+			<div>
+				<input type="button" id="btnCancelar" value="Cancelar"/>
+			</div>
+		</form>
+	</div>
+	
+	<script src="../assets/jquery-3.7.1.min.js"></script>
+	<script src="cliente.jquery.js"></script>
+	
+</body>
+</html>

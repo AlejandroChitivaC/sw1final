@@ -3,6 +3,7 @@ package org.codelab.softwaresol.model.entities.user;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.codelab.softwaresol.model.entities.repos.UsuarioRepository;
 
 @Getter
 @Setter
@@ -35,11 +36,11 @@ public class Usuario {
     @Column(name = "estado", length = 1)
     private String estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_rol")
-    private RolUsuario idRol;
 
-    public Usuario(Integer id, String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String estado, RolUsuario idRol) {
+    @Column(name = "rol", length = 25)
+    private String rol;
+
+    public Usuario(Integer id, String usuario, String contraseña, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String estado, String rol) {
         this.id = id;
         this.usuario = usuario;
         this.contraseña = contraseña;
@@ -48,7 +49,7 @@ public class Usuario {
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.estado = estado;
-        this.idRol = idRol;
+        this.rol = rol;
     }
 
     public Usuario() {
@@ -56,5 +57,77 @@ public class Usuario {
     }
     public String getPassword() {
         return contraseña;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public String getPrimerNombre() {
+        return primerNombre;
+    }
+
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

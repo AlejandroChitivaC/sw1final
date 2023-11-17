@@ -1,4 +1,4 @@
-
+axios.get()
 function handleSubmit(event) {
     event.preventDefault(); // Evita que el formulario se envíe
   
@@ -15,7 +15,7 @@ function handleSubmit(event) {
       .then(function (response) {
           Swal.fire('Respuesta exitosa:', response.data);
           window.location.href = "/web/main.html"
-          setTimeout(0.5);
+          setTimeout(100);
       })
 
       .catch(function (error) {

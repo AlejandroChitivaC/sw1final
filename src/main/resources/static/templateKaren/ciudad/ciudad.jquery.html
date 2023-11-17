@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Ciudades</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<h1>Lista de Ciudades</h1>
+	<table id="tblCiudades" class="mostrar">
+		<thead>
+			<th>ID</th>
+			<th>NOMBRE</th>
+			<th>PAIS ID</th>
+			<th>PAIS NOMBRE</th>
+			<th id="btnAdd" class="btn"><span>+</span></th>
+		</thead>
+		<tbody id="tbodyCiudades"></tbody>
+	</table>
+	
+	<div id="frmCiudades" class="ocultar">
+		<form>
+		<br></br>
+			<div id="divId">
+				<label>ID</label>
+				<input type="text" id="id" disabled />
+			</div>
+			<div>
+				<label>NOMBRE</label>
+				<input type="text" id="nombreCiudad"/>
+			</div>
+			<div>
+    			<label>PAIS ID</label>
+    			<input type="text" id="id_pais"/>
+			</div>
+			<div>
+    			<label>PAIS NOMBRE</label>
+    			<input type="text" id="paisNombre"/>
+			</div>
+			<div>
+				<input type="button" id="btnEnviar" value="Enviar"/>
+			</div>
+			<div>
+				<input type="button" id="btnCancelar" value="Cancelar"/>
+			</div>
+		</form>
+	</div>
+	
+	<script src="../assets/jquery-3.7.1.min.js"></script>
+	<script src="ciudades.jquery.js"></script>
+	
+</body>
+</html>
