@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/api/user")
 public class UsuarioController {
 
@@ -33,8 +34,36 @@ public class UsuarioController {
     public String getUsuarios(Model model) {
         List<Usuario> listUsers = usuarioService.getUsuarios();
         model.addAttribute("listUsers", listUsers);
-        return "static/web/users/showUser.html";
+        return "showUser";
     }
+
+    @GetMapping(value = "/agregar")
+    public String createUser(Model model){
+        Usuario usuario = new Usuario();
+        model.addAttribute("usuario", usuario);
+        return "crearUsuario";
+    }
+    @PostMapping(value = "/agregar")
+    public String saveUser(@ModelAttribute Usuario usuario){
+        usuarioService.createUsuario(usuario);
+        return "redirect:/api/user/getUsers";
+    }
+
+    @RequestMapping("/editar/{id}")
+    public ModelAndView showEditForm(@PathVariable(name = "id") int id){
+        ModelAndView model = new ModelAndView("editUser");
+        Usuario usuario = usuarioService.getById(id);
+        model.addObject("usuario", usuario);
+        return model;
+    }
+
+    @GetMapping("/getUsers3")
+    public String getUsuarios3(Model model) {
+        List<Usuario> listUsers = usuarioService.getUsuarios();
+        model.addAttribute("listUsers", listUsers);
+        return "plantilla/base";
+    }
+
 
     @GetMapping("/getUsers2")
     public List<Usuario>listaUsuarios(){
