@@ -28,7 +28,7 @@ public class ProveedorController {
         return proveedorService.getSupplierById(idSupplier);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON)
+    @PostMapping
     public Proveedor createSupplier(Proveedor proveedor) {
         proveedorService.createSupplier(proveedor);
         return proveedor;
