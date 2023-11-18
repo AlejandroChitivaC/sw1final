@@ -28,8 +28,10 @@ public class Producto {
 
     @Column(name = "existencia")
     private Integer existencia;
+
     @Column(name = "iva")
     private Float iva;
+
     @Column(name = "estado", length = 1)
     private String estado;
 

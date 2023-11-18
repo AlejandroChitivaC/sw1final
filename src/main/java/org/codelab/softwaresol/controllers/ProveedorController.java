@@ -3,10 +3,8 @@ package org.codelab.softwaresol.controllers;
 import org.codelab.softwaresol.model.entities.proveedor.Proveedor;
 import org.codelab.softwaresol.services.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,30 +16,27 @@ public class ProveedorController {
     private ProveedorService proveedorService;
 
     @GetMapping
-    public List<Proveedor> getSuppliers() {
-        return proveedorService.getSuppliers();
+    public List<Proveedor> obtener() {
+        return proveedorService.obtener();
     }
 
-
-    @GetMapping("/getSupplierId/{idSupplier}")
-    public Optional<Proveedor> getSupplierById(@PathVariable("idSupplier") int idSupplier) {
-        return proveedorService.getSupplierById(idSupplier);
+    @GetMapping("/{idProv}")
+    public Optional<Proveedor> obtenerPorId(@PathVariable int idProv) {
+        return proveedorService.obtenerPorId(idProv);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON)
-    public Proveedor createSupplier(Proveedor proveedor) {
-        proveedorService.createSupplier(proveedor);
-        return proveedor;
+    @PostMapping
+    public Proveedor crear(@RequestBody Proveedor proveedor) {
+        return proveedorService.crear(proveedor);
     }
 
     @PutMapping
-    public Proveedor updateSupplier(Proveedor proveedor) {
-        proveedorService.updateSupplier(proveedor);
-        return proveedor;
+    public Proveedor actualizar(@RequestBody Proveedor proveedor) {
+        return proveedorService.update(proveedor);
     }
 
-    @DeleteMapping("{idProveedor}")
-    public void deleteSupplier(@PathVariable("idProveedor") int idProveedor) {
-        proveedorService.deleteSupplier(idProveedor);
+    @DeleteMapping("/{idProv}")
+    public void eliminar(@PathVariable("idProv") int idProv) {
+        proveedorService.delete(idProv);
     }
 }

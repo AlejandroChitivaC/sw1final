@@ -21,39 +21,6 @@ public class Cliente {
     @Column(name = "estado", length = 1)
     private String estado;
 
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getNit() {
-        return nit;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public Cliente(Integer id, String nombre, String nit, String estado) {
         this.id = id;
         this.nombre = nombre;

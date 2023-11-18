@@ -14,25 +14,23 @@ public class ProveedorService {
     @Autowired
     private ProveedorRepository proveedorRepository;
 
-    public List<Proveedor> getSuppliers() {
+    public List<Proveedor> obtener(){
         return proveedorRepository.findAll();
     }
 
-    public Optional<Proveedor> getSupplierById(int idSupplier) {
-        return proveedorRepository.findById(idSupplier);
+    public Optional<Proveedor> obtenerPorId(int id) {
+        return proveedorRepository.findById(id);
     }
 
-    public Proveedor createSupplier(Proveedor proveedor) {
-        proveedorRepository.save(proveedor);
-        return proveedor;
+    public Proveedor crear(Proveedor proveedor) {
+        return proveedorRepository.save(proveedor);
     }
 
-    public Proveedor updateSupplier(Proveedor proveedor) {
-        proveedorRepository.save(proveedor);
-        return proveedor;
+    public Proveedor update(Proveedor proveedor) {
+        return proveedorRepository.save(proveedor);
     }
 
-    public void deleteSupplier(int idSupplier) {
-        proveedorRepository.deleteById(idSupplier);
+    public void delete(int id) {
+        proveedorRepository.deleteById(id);
     }
 }
