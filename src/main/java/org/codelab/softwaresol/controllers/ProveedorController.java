@@ -25,9 +25,10 @@ public class ProveedorController {
         return proveedorService.obtenerPorId(idProv);
     }
 
-    @PostMapping
-    public Proveedor crear(@RequestBody Proveedor proveedor) {
-        return proveedorService.crear(proveedor);
+    @PostMapping()
+    public Proveedor createSupplier(Proveedor proveedor) {
+        proveedorService.createSupplier(proveedor);
+        return proveedor;
     }
 
     @PutMapping

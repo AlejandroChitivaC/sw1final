@@ -70,7 +70,7 @@ CREATE TABLE bd_rosita.detalle_cliente
 CREATE TABLE bd_rosita.usuario
 (
     id_usuario       INT(10)     NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usuario          VARCHAR(50),
+    username         VARCHAR(50),
     contraseña       VARCHAR(30) NOT NULL,
     primer_nombre    VARCHAR(20),
     segundo_nombre   VARCHAR(20),

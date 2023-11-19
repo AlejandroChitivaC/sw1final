@@ -22,7 +22,7 @@ public class ProveedorService {
         return proveedorRepository.findById(id);
     }
 
-    public Proveedor crear(Proveedor proveedor) {
+    public Proveedor createSupplier(Proveedor proveedor) {
         return proveedorRepository.save(proveedor);
     }
 

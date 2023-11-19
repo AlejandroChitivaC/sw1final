@@ -11,7 +11,7 @@ public class AuthService {
     UsuarioRepository usuarioRepository;
 
     public boolean authUsuario(String username, String password){
-        Usuario usuario = usuarioRepository.findUserByUsuario(username);
+        Usuario usuario = usuarioRepository.findUserByUsername(username);
 
         if (usuario != null && usuario.getContraseña().equals(password)) {
             return true;
@@ -20,7 +20,7 @@ public class AuthService {
     }
 
     public String getRolUser (String username){
-        Usuario usuario = usuarioRepository.findUserByUsuario(username);
+        Usuario usuario = usuarioRepository.findUserByUsername(username);
         if (usuario != null) {
             return usuario.getRol();
         }

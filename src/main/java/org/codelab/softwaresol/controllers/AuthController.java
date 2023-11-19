@@ -1,8 +1,8 @@
 package org.codelab.softwaresol.controllers;
 
 import jakarta.servlet.http.HttpSession;
-import org.codelab.softwaresol.model.entities.user.LoginData;
 import org.codelab.softwaresol.model.entities.repos.UsuarioRepository;
+import org.codelab.softwaresol.model.entities.user.LoginData;
 import org.codelab.softwaresol.model.entities.user.Usuario;
 import org.codelab.softwaresol.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class AuthController {
 
     @PostMapping(path = "/login")
     public ResponseEntity<String> login(@RequestBody LoginData loginRequest) {
-        Usuario usr = userRepo.findUserByUsuario(loginRequest.getUsername());
+        Usuario usr = userRepo.findUserByUsername(loginRequest.getUsername());
 
         if (usr != null && loginRequest.getPassword().equals(usr.getPassword())) {
             String rol = authService.getRolUser(loginRequest.getUsername());
