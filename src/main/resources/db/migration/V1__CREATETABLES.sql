@@ -61,8 +61,8 @@ CREATE TABLE bd_rosita.detalle_cliente
     direccion          VARCHAR(30),
     estado             VARCHAR(1),
     id_ciudad          INT(10),
-    id_cliente         INT(10),
-    FOREIGN KEY (id_cliente) REFERENCES bd_rosita.cliente (id_cliente),
+    id_cliente_deta         INT(10),
+    FOREIGN KEY (id_cliente_deta) REFERENCES bd_rosita.cliente (id_cliente),
     FOREIGN KEY (id_ciudad) REFERENCES bd_rosita.ciudad (id_ciudad)
 );
 
@@ -85,10 +85,10 @@ CREATE TABLE bd_rosita.usuario
 CREATE TABLE bd_rosita.venta
 (
     id_venta    INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_cliente  INT(10),
+    cliente  INT(10),
     fecha_venta DATE,
     total_venta INT,
-    FOREIGN KEY (id_cliente) REFERENCES bd_rosita.cliente (id_cliente)
+    FOREIGN KEY (cliente) REFERENCES bd_rosita.cliente (id_cliente)
 );
 
 CREATE TABLE bd_rosita.detalle_venta

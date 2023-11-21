@@ -2,6 +2,7 @@ package org.codelab.softwaresol.services;
 
 import org.codelab.softwaresol.model.entities.proveedor.Proveedor;
 import org.codelab.softwaresol.model.entities.repos.ProveedorRepository;
+import org.codelab.softwaresol.model.entities.user.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,23 +15,29 @@ public class ProveedorService {
     @Autowired
     private ProveedorRepository proveedorRepository;
 
-    public List<Proveedor> obtener(){
+    public List<Proveedor> getSuppliers() {
         return proveedorRepository.findAll();
     }
 
-    public Optional<Proveedor> obtenerPorId(int id) {
-        return proveedorRepository.findById(id);
+    public Optional<Proveedor> getSupplierById(int idSupplier) {
+        return proveedorRepository.findById(idSupplier);
     }
 
     public Proveedor createSupplier(Proveedor proveedor) {
-        return proveedorRepository.save(proveedor);
+        proveedorRepository.save(proveedor);
+        return proveedor;
     }
 
-    public Proveedor update(Proveedor proveedor) {
-        return proveedorRepository.save(proveedor);
+    public Proveedor updateSupplier(Proveedor proveedor) {
+        proveedorRepository.save(proveedor);
+        return proveedor;
     }
 
-    public void delete(int id) {
-        proveedorRepository.deleteById(id);
+    public void deleteSupplier(int idSupplier) {
+        proveedorRepository.deleteById(idSupplier);
+    }
+
+    public Proveedor getById(int id){
+        return proveedorRepository.findById(id).get();
     }
 }

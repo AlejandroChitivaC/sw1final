@@ -11,13 +11,13 @@ import org.codelab.softwaresol.model.entities.Ciudad;
 @Table(name = "proveedor", indexes = {
         @Index(name = "id_ciudad", columnList = "id_ciudad")
 })
-public class Proveedor {
+public class    Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_prov", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_ciudad")
     private Ciudad idCiudad;
 

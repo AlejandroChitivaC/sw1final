@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rosita´s paper | Crear usuario</title>
+    <title>Rosita´s paper | Crear proveedor</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -211,20 +211,20 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <a th:href="@{/api/supplier/getSuppliers}" class="nav-link active">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
+                                Proveedores
+                                <span class="right badge badge-danger">Supplier</span>
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <a th:href="@{/api/product/getProducts}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
+                                Productos
+                                <span class="right badge badge-danger">Products</span>
                             </p>
                         </a>
                     </li>
@@ -262,7 +262,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Usuarios</h1>
+                        <h1>Proveedores</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -285,9 +285,9 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Añadir usuario</h3>
-                                <a th:href="@{/api/user/getUsers}" class="btn btn-primary float-right">Ver lista de
-                                    Usuarios</a>
+                                <h3 class="card-title">Añadir proveedor</h3>
+                                <a th:href="@{/api/supplier/getSuppliers}" class="btn btn-primary float-right">Ver lista de
+                                    proveedores</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -299,37 +299,45 @@
                                         </div>
                                         <!-- /.card-header -->
                                         <!-- form start -->
-                                        <form th:object="${usuario}" th:action="@{/api/user/agregar}" method="post">
+                                        <form th:object="${proveedor}" th:action="@{/api/supplier/agregar}"
+                                              method="post">
                                             <div class="card-body">
                                                 <div class="form-group">
-                                                    <label> Usuario: </label>
-                                                    <input type="text" name="username" th:field="*{username}"
-                                                           class="form-control" placeholder="Nombre de usuario" required>
+                                                    <label>Ciudad:</label>
+                                                    <div class="input-group-append">
+                                                        <input type="search" class="form-control" placeholder="Buscar ciudad" aria-label="Buscar ciudad" id="searchCiudad">
+                                                    </div>
+                                                    <select name="ciudad" th:field="*{idCiudad}" class="form-control" id="ciudadSelect">
+                                                        <option th:each="ciudad : ${listCities}" th:value="${ciudad.id}"
+                                                                th:text="${ciudad.nombre}"></option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Contraseña: </label>
-                                                    <input type="password" name="contraseña" th:field="*{contraseña}"
-                                                           class="form-control" placeholder="Contraseña" required>
+                                                    <label> Nombre: </label>
+                                                    <input type="text" name="nombre" th:field="*{nombre}"
+                                                           class="form-control" placeholder="Nombre del proveedor"
+                                                           required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Primer nombre: </label>
-                                                    <input type="text" name="primerNombre" th:field="*{primerNombre}"
-                                                           class="form-control" placeholder="Primer nombre" required>
+                                                    <label> Nit: </label>
+                                                    <input type="text" name="nit" th:field="*{nit}"
+                                                           class="form-control" placeholder="Nit" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Segundo nombre: </label>
-                                                    <input type="text" name="segundoNombre" th:field="*{segundoNombre}"
-                                                           class="form-control" placeholder="Segundo nombre">
+                                                    <label> Correo: </label>
+                                                    <input type="email" name="correo" th:field="*{correo}"
+                                                           class="form-control" placeholder="correo">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Primer apellido: </label>
-                                                    <input type="text" name="primerApellido" th:field="*{primerApellido}"
-                                                           class="form-control" placeholder="Primer apellido" required>
+                                                    <label> Teléfono: </label>
+                                                    <input type="tel" name="telefono" th:field="*{telefono}"
+                                                           class="form-control" placeholder="Número de teléfono"
+                                                           required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Segundo apellido: </label>
-                                                    <input type="text" name="segundoApellido" th:field="*{segundoApellido}"
-                                                           class="form-control" placeholder="Segundo apellido">
+                                                    <label> Dirección: </label>
+                                                    <input type="text" name="segundoApellido" th:field="*{direccion}"
+                                                           class="form-control" placeholder="Dirección">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Estado:</label>
@@ -338,19 +346,13 @@
                                                         <option value="I">Inactivo</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Rol:</label>
-                                                    <select name="rol" th:field="*{rol}" class="form-control">
-                                                        <option value="ADMIN">Administrador</option>
-                                                        <option value="EMPLOYEE">Empleado</option>
-                                                    </select>
-                                                </div>
                                                 <!-- Añade el campo de rol -->
 
                                             </div>
                                             <!-- Agrega el botón de envío -->
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-success">Guardar</button>
+                                                <a th:href="@{/api/supplier/getSuppliers}" class="btn btn-secondary float-right">Cancelar</a>
                                             </div>
                                         </form>
                                     </div>
@@ -395,5 +397,33 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Obtén el elemento select y el campo de búsqueda
+        var ciudadSelect = $('#ciudadSelect');
+        var searchCiudad = $('#searchCiudad');
+
+        // Obtén todas las opciones del select
+        var opcionesCiudad = ciudadSelect.find('option');
+
+        // Escucha el evento de entrada en el campo de búsqueda
+        searchCiudad.on('input', function() {
+            var searchTerm = $(this).val().toLowerCase();
+
+            // Itera sobre las opciones del select y muestra/oculta según el término de búsqueda
+            opcionesCiudad.each(function() {
+                var optionText = $(this).text().toLowerCase();
+
+                // Muestra u oculta las opciones según el término de búsqueda
+                if (optionText.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

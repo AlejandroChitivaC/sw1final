@@ -1,12 +1,10 @@
 package org.codelab.softwaresol.controllers;
 
 import org.codelab.softwaresol.model.entities.cliente.Cliente;
-import org.codelab.softwaresol.model.entities.producto.Producto;
 import org.codelab.softwaresol.model.entities.repos.ClienteRepository;
-import org.codelab.softwaresol.model.entities.repos.ProductoRepository;
 import org.codelab.softwaresol.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +20,13 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+
+
+
+
+
+
+
 
 
     @GetMapping("/getClientes")
