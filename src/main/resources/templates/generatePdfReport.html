@@ -1,0 +1,49 @@
+<!-- src/main/resources/templates/pdfReport.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Report</title>
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}" />
+</head>
+<body>
+<h1>User Report</h1>
+<div class="card-body">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Username</th>
+      <th scope="col">Primer Nombre</th>
+      <th scope="col">Segundo Nombre</th>
+      <th scope="col">Primer Apellido</th>
+      <th scope="col">Segundo Apellido</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Acciones</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="user:${listUsers}">
+      <td th:text="${user.id}"></td>
+      <td th:text="${user.username}"></td>
+      <td th:text="${user.primerNombre}"></td>
+      <td th:text="${user.segundoNombre}"></td>
+      <td th:text="${user.primerApellido}"></td>
+      <td th:text="${user.segundoApellido}"></td>
+      <td th:text="${user.estado}"></td>
+      <td th:text="${user.rol}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+  <!-- AdminLTE App -->
+  <script src="../static/dist/js/adminlte.min.js"></script>
+  </tbody>
+</table>
+</body>
+</html>
