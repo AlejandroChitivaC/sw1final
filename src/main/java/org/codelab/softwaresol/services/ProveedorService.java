@@ -2,6 +2,7 @@ package org.codelab.softwaresol.services;
 
 import org.codelab.softwaresol.model.entities.proveedor.Proveedor;
 import org.codelab.softwaresol.model.entities.repos.ProveedorRepository;
+import org.codelab.softwaresol.model.entities.user.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,9 @@ public class ProveedorService {
 
     public void deleteSupplier(int idSupplier) {
         proveedorRepository.deleteById(idSupplier);
+    }
+
+    public Proveedor getById(int id){
+        return proveedorRepository.findById(id).get();
     }
 }

@@ -3,6 +3,7 @@ package org.codelab.softwaresol.services;
 import
         org.codelab.softwaresol.model.entities.producto.Producto;
 import org.codelab.softwaresol.model.entities.repos.ProductoRepository;
+import org.codelab.softwaresol.model.entities.user.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,11 @@ public class ProductoService {
         productoRepository.save(producto);
         return producto;
     }
-
     public void deleteProducto(int id) {
         productoRepository.deleteById(id);
+    }
+
+    public Producto getById(int id){
+        return productoRepository.findById(id).get();
     }
 }

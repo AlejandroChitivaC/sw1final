@@ -34,14 +34,14 @@ public class UsuarioController {
     public String getUsuarios(Model model) {
         List<Usuario> listUsers = usuarioService.getUsuarios();
         model.addAttribute("listUsers", listUsers);
-        return "showUser";
+        return "user/showUser";
     }
 
     @GetMapping(value = "/agregar")
     public String createUser(Model model){
         Usuario usuario = new Usuario();
         model.addAttribute("usuario", usuario);
-        return "crearUsuario";
+        return "user/crearUsuario";
     }
     @PostMapping(value = "/agregar")
     public String saveUser(@ModelAttribute Usuario usuario){
@@ -51,11 +51,14 @@ public class UsuarioController {
 
     @RequestMapping("/editar/{id}")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id){
-        ModelAndView model = new ModelAndView("editUser");
+        ModelAndView model = new ModelAndView("user/editUser");
         Usuario usuario = usuarioService.getById(id);
         model.addObject("usuario", usuario);
         return model;
     }
+
+
+
 
     @GetMapping("/getUsers3")
     public String getUsuarios3(Model model) {

@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rosita´s paper | Lista Usuarios</title>
+    <title>Rosita´s paper | Editar producto</title>
+
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}" />
-
-    <!-- DataTables -->
-    <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}" />
-    <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}" />
-    <link rel="stylesheet" th:href="@{/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}" />
-
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}" />
-
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
@@ -71,7 +68,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar"
+                            <img src="/dist/img/user1-128x128.jpg" alt="User Avatar"
                                  class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
@@ -88,7 +85,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
+                            <img src="/dist/img/user8-128x128.jpg" alt="User Avatar"
                                  class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
@@ -105,7 +102,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar"
+                            <img src="/dist/img/user3-128x128.jpg" alt="User Avatar"
                                  class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
@@ -167,7 +164,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="../../index3.html" class="brand-link">
-            <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
         </a>
@@ -177,7 +174,7 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">Alexander Pierce</a>
@@ -214,20 +211,20 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <a th:href="@{/api/supplier/getSuppliers}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
+                                Proveedores
+                                <span class="right badge badge-danger">Supplier</span>
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <a th:href="@{/api/product/getProducts}" class="nav-link active">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
+                                Productos
+                                <span class="right badge badge-danger">Products</span>
                             </p>
                         </a>
                     </li>
@@ -257,6 +254,7 @@
         <!-- /.sidebar -->
     </aside>
 
+    <!--TABLAS-->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -264,7 +262,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Usuarios</h1>
+                        <h1>Productos</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -287,44 +285,77 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Información de usuarios</h3>
-                                <a th:href="@{/api/user/agregar}" class="btn btn-primary float-right">Agregar nuevo usuario</a>
+                                <h3 class="card-title">Editar producto</h3>
+                                <a th:href="@{/api/product/getProducts}" class="btn btn-primary float-right">Ver lista de
+                                    productos</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">Primer Nombre</th>
-                                        <th scope="col">Segundo Nombre</th>
-                                        <th scope="col">Primer Apellido</th>
-                                        <th scope="col">Segundo Apellido</th>
-                                        <th scope="col">Estado</th>
-                                        <th scope="col">Rol</th>
-                                        <th scope="col">Acciones</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+                                <div class="col-md-6 mx-auto">
+                                    <!-- general form elements -->
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Editar producto</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+                                        <form th:object="${producto}" th:action="@{/api/prudct/agregar}"
+                                              method="post">
+                                            <div class="card-body">
+                                                <div>
+                                                    <label>Producto ID:</label>
+                                                    <input type="number" name="id" th:field="*{id}"
+                                                    class="form-control" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Nombre del producto: </label>
+                                                    <input type="text" name="nombreProducto" th:field="*{nombreProducto}"
+                                                           class="form-control" placeholder="Nombre del proveedor"
+                                                           required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Precio de venta: </label>
+                                                    <input type="number" name="precioVenta" th:field="*{precioVenta}"
+                                                           class="form-control" placeholder="Precio de venta" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Stock mínimo del producto: </label>
+                                                    <input type="number" name="stockMin" th:field="*{stockMin}"
+                                                           class="form-control" placeholder="Stock mínimo" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Stock máximo del producto: </label>
+                                                    <input type="number" name="stockMax" th:field="*{stockMax}"
+                                                           class="form-control" placeholder="Stock máximo" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Exisitencia del producto: </label>
+                                                    <input type="number" name="existencia" th:field="*{existencia}"
+                                                           class="form-control" placeholder="Existencia del producto" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Iva del producto: </label>
+                                                    <input type="number" name="iva" th:field="*{iva}"
+                                                           class="form-control" placeholder="Iva del producto">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Estado:</label>
+                                                    <select name="rol" th:field="*{estado}" class="form-control">
+                                                        <option value="A">Activo</option>
+                                                        <option value="I">Inactivo</option>
+                                                    </select>
+                                                </div>
+                                                <!-- Añade el campo de rol -->
 
-                                    <tr th:each="user:${listUsers}">
-                                        <td th:text="${user.id}"></td>
-                                        <td th:text="${user.username}"></td>
-                                        <td th:text="${user.primerNombre}"></td>
-                                        <td th:text="${user.segundoNombre}"></td>
-                                        <td th:text="${user.primerApellido}"></td>
-                                        <td th:text="${user.segundoApellido}"></td>
-                                        <td th:text="${user.estado}"></td>
-                                        <td th:text="${user.rol}"></td>
-                                        <td>
-                                            <a class="btn btn-primary" th:href="@{'/api/user/editar/' + ${user.id}}">Editar</a>
-
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                            </div>
+                                            <!-- Agrega el botón de envío -->
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-success">Guardar</button>
+                                                <a th:href="@{/api/product/getProducts}" class="btn btn-secondary float-right">Cancelar</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -338,12 +369,12 @@
         </section>
         <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.2.0
         </div>
-        <strong>Copyright © 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
@@ -355,49 +386,15 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../static/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="../static/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../static/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../static/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../static/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../static/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../static/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../static/plugins/jszip/jszip.min.js"></script>
-<script src="../static/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../static/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../static/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../static/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../static/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../static/dist/js/adminlte.min.js"></script>
+<script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../static/dist/js/demo.js"></script>
-<!-- Page specific script -->
-<script>
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#userTable_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
-<!--<script src="/web/scripts/user.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="/web/scripts/user.js"></script>-->
-
+<script src="/dist/js/demo.js"></script>
 </body>
 </html>

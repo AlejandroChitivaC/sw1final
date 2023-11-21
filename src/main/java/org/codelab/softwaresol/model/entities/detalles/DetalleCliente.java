@@ -9,10 +9,7 @@ import org.codelab.softwaresol.model.entities.cliente.Cliente;
 @Getter
 @Setter
 @Entity
-@Table(name = "detalle_cliente", indexes = {
-        @Index(name = "id_ciudad", columnList = "id_ciudad"),
-        @Index(name = "id_cliente", columnList = "id_cliente")
-})
+@Table(name = "detalle_cliente")
 public class DetalleCliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +33,7 @@ public class DetalleCliente {
     private Ciudad idCiudad;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cliente")
-    private Cliente idCliente;
+    @JoinColumn(name = "id_cliente_deta")
+    private Cliente idClienteDeta;
 
 }

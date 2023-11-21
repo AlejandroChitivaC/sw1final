@@ -22,12 +22,21 @@ public class VentaService {
         return ventaRepository.findById(idVenta);
     }
 
-    public Venta saveUpdateVenta(Venta venta){
+    public Venta updateVenta(Venta venta){
+        ventaRepository.save(venta);
+        return venta;
+    }
+
+    public Venta createVenta(Venta venta){
         ventaRepository.save(venta);
         return venta;
     }
 
     public void deleteVenta(int idVenta){
         ventaRepository.deleteById(idVenta);
+    }
+
+    public Venta getById(int id){
+        return ventaRepository.findById(id).get();
     }
 }
