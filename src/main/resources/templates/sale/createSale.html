@@ -305,21 +305,27 @@
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label>NIT:</label>
-                                                    <select th:field="*{cliente}" class="form-control">
+                                                    <div class="input-group-append">
+                                                        <input type="search" class="form-control" placeholder="Buscar por nit o cedula" aria-label="Buscar ciudad" id="searchCiudad">
+                                                    </div>
+                                                    <select th:field="*{cliente.id}" class="form-control"  id="ciudadSelect">
+                                                        <option value="">Seleccione un cliente por su NIT o su CEDULA</option>
                                                         <option th:each="client: ${listClients}" th:value="${client.id}"
                                                                 th:text="${client.nit}"></option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label> Fecha: </label>
-                                                    <input type="date" name="fecha" th:field="*{fechaVenta}"
+                                                    <input type="date" name="fechaVenta" th:field="*{fechaVenta}"
                                                            class="form-control" placeholder="Nombre del proveedor"
                                                            required>
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label> Total venta: </label>
-                                                    <input type="number" name="nit" th:field="*{totalVenta}"
-                                                           class="form-control" placeholder="Nit" required>
+
+                                                    <input type="number" name="totalVenta" th:field="*{totalVenta}"
+                                                           class="form-control" placeholder="Total venta" required>
                                                 </div>
                                                 <!-- Añade el campo de rol -->
 

@@ -21,7 +21,7 @@ public class ProductoService {
     }
 
     public Optional<Producto> obtenerProducto(int id) {
-        return productoRepository.findById(id);
+        return Optional.ofNullable(productoRepository.findById(id));
     }
 
     public Producto saveOrUpdate(Producto producto) {
@@ -33,6 +33,6 @@ public class ProductoService {
     }
 
     public Producto getById(int id){
-        return productoRepository.findById(id).get();
+        return productoRepository.findById(id);
     }
 }

@@ -98,6 +98,7 @@ CREATE TABLE bd_rosita.detalle_venta
     id_prod          INT(10),
     cantidad         INT,
     subtotal         INT(10),
+    estado           VARCHAR(1),
     FOREIGN KEY (id_venta) REFERENCES bd_rosita.venta (id_venta),
     FOREIGN KEY (id_prod) REFERENCES bd_rosita.producto (id_prod)
 );

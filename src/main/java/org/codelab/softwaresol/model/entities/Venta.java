@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.codelab.softwaresol.model.entities.cliente.Cliente;
+import org.codelab.softwaresol.model.entities.detalles.DetalleVenta;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "venta", indexes = {
-@Index(name = "id_cliente", columnList = "cliente")
+        @Index(name = "id_cliente", columnList = "cliente")
 })
 public class Venta {
     @Id
@@ -28,6 +30,9 @@ public class Venta {
 
     @Column(name = "total_venta")
     private Integer totalVenta;
+
+    @OneToMany(mappedBy = "idVenta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleVenta> detalles;
 
     public Venta(Integer id, Cliente cliente, LocalDate fechaVenta, Integer totalVenta) {
         this.id = id;
@@ -70,4 +75,5 @@ public class Venta {
     public void setTotalVenta(Integer totalVenta) {
         this.totalVenta = totalVenta;
     }
+
 }

@@ -9,21 +9,18 @@ import org.codelab.softwaresol.model.entities.producto.Producto;
 @Getter
 @Setter
 @Entity
-@Table(name = "detalle_venta", indexes = {
-        @Index(name = "id_venta", columnList = "id_venta"),
-        @Index(name = "id_prod", columnList = "id_prod")
-})
+@Table(name = "detalle_venta")
 public class DetalleVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle_venta", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_venta")
     private Venta idVenta;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_prod")
     private Producto idProd;
 
@@ -32,5 +29,8 @@ public class DetalleVenta {
 
     @Column(name = "subtotal")
     private Integer subtotal;
+
+    @Column(name = "estado", length = 1)
+    private String estado;
 
 }
