@@ -38,11 +38,18 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "/agregar")
-    public String createUser(Model model){
-        Usuario usuario = new Usuario();
-        model.addAttribute("usuario", usuario);
-        return "user/crearUsuario";
+    public String createUser(Model model) throws AccessDeniedException {
+        String currentUser = auth.getCurrentUser();
+        String userRol = authService.getRolUser(currentUser);
+        if (userRol != null && userRol.equals("ADMIN")) {
+            Usuario usuario = new Usuario();
+            model.addAttribute("usuario", usuario);
+            return "user/crearUsuario";
+        } else {
+            return "error/500";
+        }
     }
+
     @PostMapping(value = "/agregar")
     public String saveUser(@ModelAttribute Usuario usuario){
         usuarioService.createUsuario(usuario);
@@ -51,10 +58,18 @@ public class UsuarioController {
 
     @RequestMapping("/editar/{id}")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id){
-        ModelAndView model = new ModelAndView("user/editUser");
-        Usuario usuario = usuarioService.getById(id);
-        model.addObject("usuario", usuario);
-        return model;
+        String currentUser = auth.getCurrentUser();
+        String userRol = authService.getRolUser(currentUser);
+        ModelAndView error = new ModelAndView("error/500");
+        if (userRol != null && userRol.equals("ADMIN")) {
+            ModelAndView model = new ModelAndView("user/editUser");
+            Usuario usuario = usuarioService.getById(id);
+            model.addObject("usuario", usuario);
+            return model;
+        } else {
+            return error;
+        }
+
     }
 
 

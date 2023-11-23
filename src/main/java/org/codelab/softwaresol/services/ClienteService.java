@@ -18,7 +18,7 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Optional<Cliente> getClienteById(int idCliente){
+    public Optional<Cliente> getCliente (int idCliente){
         return clienteRepository.findById(idCliente);
     }
 
@@ -30,12 +30,16 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+    public Cliente saveOrUpdate(Cliente cliente) {
+        clienteRepository.save(cliente);
+        return cliente;
+    }
+
     public void deleteCliente (int idCliente){
         clienteRepository.deleteById(idCliente);
     }
 
-
-    public Cliente findById(Integer id) {
-        return clienteRepository.findById(id).orElse(null);
+    public Cliente getById(int id){
+        return clienteRepository.findById(id).get();
     }
 }

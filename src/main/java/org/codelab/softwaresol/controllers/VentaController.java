@@ -1,6 +1,5 @@
 package org.codelab.softwaresol.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.codelab.softwaresol.model.entities.Venta;
 import org.codelab.softwaresol.model.entities.cliente.Cliente;
 import org.codelab.softwaresol.model.entities.detalles.DetalleVenta;
@@ -8,7 +7,6 @@ import org.codelab.softwaresol.model.entities.producto.Producto;
 import org.codelab.softwaresol.model.entities.repos.ClienteRepository;
 import org.codelab.softwaresol.model.entities.repos.DetalleVentaRepository;
 import org.codelab.softwaresol.model.entities.repos.ProductoRepository;
-import org.codelab.softwaresol.services.ClienteService;
 import org.codelab.softwaresol.services.ProductoService;
 import org.codelab.softwaresol.services.VentaService;
 import org.slf4j.Logger;
@@ -18,9 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
