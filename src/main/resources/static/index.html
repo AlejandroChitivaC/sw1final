@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Rosita´s paper | Log in</title>
-    <!-- Google Font: Source Sans Pro -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="../../plugins/fontawesome-free/css/all.min.css"
-    />
-    <!-- icheck bootstrap -->
-    <link
-      rel="stylesheet"
-      href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css"
-    />
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css" />
-    <!-- Axios Library -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- Swal Alert Library -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
-  <body class="hold-transition login-page">
-    <div class="login-box">
-      <!-- /.login-logo -->
-      <div class="card card-outline card-primary">
-        <div class="card-header text-center">
-          <img
-            style="
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rosita´s paper | Log in</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+  />
+  <!-- Font Awesome -->
+  <link
+          rel="stylesheet"
+          href="../../plugins/fontawesome-free/css/all.min.css"
+  />
+  <!-- icheck bootstrap -->
+  <link
+          rel="stylesheet"
+          href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css"
+  />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="./dist/css/adminlte.min.css" />
+  <!-- Axios Library -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Swal Alert Library -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+
+<style>
+  body {
+
+    background-image: url('./dist/img/fondo_index.jpg');
+
+    background-size: cover;
+
+    background-attachment: fixed;
+
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <img
+              style="
               height: 170px;
               width: 300px;
               display: flex;
@@ -40,91 +55,85 @@
               margin-top: -8px;
               margin-bottom: -50px;
             "
-            src="./dist/img/logoRosita.png"
-            class="h1"
-          /><img />
+              src="./dist/img/logoRosita.png"
+              class="h1"
+      /><img />
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Por favor inicie sesión para continuar...</p>
+      <form id="form">
+        <div class="input-group mb-3">
+          <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="Usuario"
+                  required
+          />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <p class="login-box-msg">Por favor inicie sesión para continuar...</p>
-          <form id="form">
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                placeholder="Username"
-                required
-              />
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-envelope"></span>
-                </div>
-              </div>
+        <div class="input-group mb-3">
+          <input
+                  type="password"
+                  id="pass"
+                  class="form-control"
+                  placeholder="Contraseña"
+                  required
+          />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="input-group mb-3">
-              <input
-                type="password"
-                id="pass"
-                class="form-control"
-                placeholder="Contraseña"
-                required
-              />
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <!-- /.col -->
-              <div class="col-4">
-                <button
-                  style="margin-left: 115%"
-                  type="submit"
-                  id="submit"
-                  class="btn btn-primary btn-block"
-                >
-                  Iniciar
-                </button>
-              </div>
-              <!-- /.col -->
-            </div>
-          </form>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-4">
+            <button
+                    style="margin-left: 115%"
+                    type="submit"
+                    id="submit"
+                    class="btn btn-primary btn-block"
+            >
+              Iniciar
+            </button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
 
-          <div class="social-auth-links text-center mt-2 mb-3">
-            <p class="mb-1">
-              <a href="/web/recover-password.html">Olvidó su contraseña?</a>
-            </p>
-            <p class="mb-0">
-              No tiene una cuenta?,
-              <a href="/web/register.html" class="text-center">Registrese</a>
-            </p>
-            <img
-              style="
+      <div class="social-auth-links text-center mt-2 mb-3">
+
+        <img
+                style="
                 height: 90px;
                 width: 90px;
                 margin-left: -6px;
                 margin-bottom: 0px;
                 margin-top: 10px;
               "
-              src="./dist/img/CodeLab Logo.png"
-              class="h1"
-            /><img />
-          </div>
-        </div>
-        <!-- /.card-body -->
+                src="./dist/img/CodeLab Logo.png"
+                class="h1"
+        /><img />
       </div>
-      <!-- /.card -->
     </div>
-    <!-- /.login-box -->
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
 
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <script src="/web/scripts/login.js"></script>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<script src="/web/scripts/login.js"></script>
 
-  </body>
+</body>
 </html>
