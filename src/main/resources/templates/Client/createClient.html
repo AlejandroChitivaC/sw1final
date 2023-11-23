@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rosita´s paper | Editar proveedor</title>
+    <title>Rosita´s paper | Crear cliente</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -83,7 +83,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a th:href="@{/api/supplier/getSuppliers}" class="nav-link active">
+                        <a th:href="@{/api/supplier/getSuppliers}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Proveedores
@@ -101,10 +101,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/api/client/getClients" class="nav-link">
+                        <a href="@{/api/client/getClient}" class="nav-link active">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Clientes
+                            <p>Clientes
                                 <span class="right badge badge-danger">Client</span>
                             </p>
                         </a>
@@ -118,7 +117,6 @@
                             </p>
                         </a>
                     </li>
-
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -134,7 +132,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Usuarios</h1>
+                        <h1>Clientes</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -151,9 +149,9 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Añadir proveedor</h3>
-                                <a th:href="@{/api/supplier/getSuppliers}" class="btn btn-primary float-right">Ver lista de
-                                    proveedores</a>
+                                <h3 class="card-title">Añadir cliente</h3>
+                                <a th:href="@{/api/client/getClients}" class="btn btn-primary float-right">Ver lista de
+                                    Clientes</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -161,51 +159,21 @@
                                     <!-- general form elements -->
                                     <div class="card card-primary">
                                         <div class="card-header">
-                                            <h3 class="card-title">Registro de usuario</h3>
+                                            <h3 class="card-title">Registro de Cliente</h3>
                                         </div>
                                         <!-- /.card-header -->
                                         <!-- form start -->
-                                        <form th:object="${proveedor}" th:action="@{/api/supplier/agregar}"
-                                              method="post">
+                                        <form th:object="${cliente}" th:action="@{/api/client/agregar}" method="post">
                                             <div class="card-body">
-                                                <div>
-                                                    <label>Proveedor ID:</label>
-                                                    <input type="text" name="id" th:field="*{id}"
-                                                    class="form-control" readonly>
-                                                </div>
                                                 <div class="form-group">
-                                                    <label>Ciudad:</label>
-                                                    <select name="ciudad" th:field="*{idCiudad}" class="form-control">
-                                                        <option th:each="ciudad : ${listCities}" th:value="${ciudad.id}"
-                                                                th:text="${ciudad.nombre}"></option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label> Nombre: </label>
+                                                    <label>Nombre: </label>
                                                     <input type="text" name="nombre" th:field="*{nombre}"
-                                                           class="form-control" placeholder="Nombre del proveedor"
-                                                           required>
+                                                           class="form-control" placeholder="Nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label> Nit: </label>
+                                                    <label>Nit: </label>
                                                     <input type="text" name="nit" th:field="*{nit}"
-                                                           class="form-control" placeholder="Nit" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label> Correo: </label>
-                                                    <input type="email" name="correo" th:field="*{correo}"
-                                                           class="form-control" placeholder="correo">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label> Teléfono: </label>
-                                                    <input type="tel" name="telefono" th:field="*{telefono}"
-                                                           class="form-control" placeholder="Número de teléfono"
-                                                           required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label> Dirección: </label>
-                                                    <input type="text" name="segundoApellido" th:field="*{direccion}"
-                                                           class="form-control" placeholder="Dirección">
+                                                           class="form-control" placeholder="Nit">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Estado:</label>
@@ -214,13 +182,11 @@
                                                         <option value="I">Inactivo</option>
                                                     </select>
                                                 </div>
-                                                <!-- Añade el campo de rol -->
-
                                             </div>
                                             <!-- Agrega el botón de envío -->
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-success">Guardar</button>
-                                                <a th:href="@{/api/supplier/getSuppliers}" class="btn btn-secondary float-right">Cancelar</a>
+                                                <a th:href="@{/api/client/getClients}" class="btn btn-secondary float-right">Cancelar</a>
                                             </div>
                                         </form>
                                     </div>

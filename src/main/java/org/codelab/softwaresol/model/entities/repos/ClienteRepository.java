@@ -8,10 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-    @Override
-    default Optional<Cliente> findById(Integer integer) {
-        return Optional.empty();
-    }
+
 
     Cliente findClienteByNit(String nit);
 
