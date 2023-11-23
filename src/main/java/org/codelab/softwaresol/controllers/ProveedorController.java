@@ -1,22 +1,15 @@
 package org.codelab.softwaresol.controllers;
 
-import jakarta.servlet.http.HttpServletResponse;
 import org.codelab.softwaresol.model.entities.Ciudad;
 import org.codelab.softwaresol.model.entities.proveedor.Proveedor;
 import org.codelab.softwaresol.model.entities.repos.CiudadRepository;
-import org.codelab.softwaresol.model.entities.user.Usuario;
 import org.codelab.softwaresol.services.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.awt.*;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 

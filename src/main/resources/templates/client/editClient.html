@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rosita´s paper | Crear proveedor</title>
+    <title>Rosita´s paper | Editar usuario</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -92,8 +92,6 @@
                                     John Pierce
                                     <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                                 </h3>
-                                <p class="text-sm">I got your message bro</p>
-                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
                             </div>
                         </div>
                         <!-- Message End -->
@@ -211,7 +209,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a th:href="@{/api/supplier/getSuppliers}" class="nav-link active">
+                        <a th:href="@{/api/supplier/getSuppliers}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Proveedores
@@ -229,11 +227,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <a th:href="@{/api/client/getClients}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
+                                Clientes
+                                <span class="right badge badge-danger">Clientes</span>
                             </p>
                         </a>
                     </li>
@@ -262,12 +260,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Proveedores</h1>
+                        <h1>Clientes</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
+                            <li class="breadcrumb-item active">Clientes</li>
                         </ol>
                     </div>
                 </div>
@@ -279,16 +277,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <!-- /.card-header -->
-
-                        <!-- /.card -->
-
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Añadir proveedor</h3>
-                                <a th:href="@{/api/supplier/getSuppliers}" class="btn btn-primary float-right">Ver lista
-                                    de
-                                    proveedores</a>
+                                <h3 class="card-title">Añadir cliente</h3>
+                                <a th:href="@{/api/client/getClients}" class="btn btn-primary float-right">Ver lista de
+                                    Clientes</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -296,30 +289,29 @@
                                     <!-- general form elements -->
                                     <div class="card card-primary">
                                         <div class="card-header">
-                                            <h3 class="card-title">Registro de usuario</h3>
+                                            <h3 class="card-title">Registro de cliente</h3>
                                         </div>
                                         <!-- /.card-header -->
                                         <!-- form start -->
-                                        <form th:object="${venta}" th:action="@{/api/sale/agregar}" method="post">
-                                            <div class="card-body">
-                                                <div class="form-group">
-                                                    <label>CLIENTE:</label>
-                                                    <select th:field="*{cliente.id}" class="form-control">
-                                                        <option th:each="client: ${listClients}" th:value="${client.id}" th:text="${client.nit}"></option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Fecha:</label>
-                                                    <input type="date" name="fechaVenta" th:field="*{fechaVenta}" class="form-control" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Total venta:</label>
-                                                    <input type="number" name="totalVenta" th:field="*{totalVenta}" class="form-control" placeholder="Total venta" required>
-                                                </div>
+                                        <form th:object="${cliente}" th:action="@{/api/client/agregar}" method="post">
+                                            <div class="form-group">
+                                                <label>Nombre:</label>
+                                                <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Nombre" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>NIT o Cédula:</label>
+                                                <input type="text" name="nit" th:field="*{nit}" class="form-control" placeholder="NIT o Cédula">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Estado:</label>
+                                                <select name="estado" th:field="*{estado}" class="form-control">
+                                                    <option value="A">Activo</option>
+                                                    <option value="I">Inactivo</option>
+                                                </select>
                                             </div>
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-success">Guardar</button>
-                                                <a th:href="@{/api/sale/getSales}" class="btn btn-secondary float-right">Cancelar</a>
+                                                <a th:href="@{/api/client/getClients}" class="btn btn-secondary float-right">Cancelar</a>
                                             </div>
                                         </form>
                                     </div>
@@ -354,7 +346,6 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -364,33 +355,5 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Obtén el elemento select y el campo de búsqueda
-        var ciudadSelect = $('#ciudadSelect');
-        var searchCiudad = $('#searchCiudad');
-
-        // Obtén todas las opciones del select
-        var opcionesCiudad = ciudadSelect.find('option');
-
-        // Escucha el evento de entrada en el campo de búsqueda
-        searchCiudad.on('input', function () {
-            var searchTerm = $(this).val().toLowerCase();
-
-            // Itera sobre las opciones del select y muestra/oculta según el término de búsqueda
-            opcionesCiudad.each(function () {
-                var optionText = $(this).text().toLowerCase();
-
-                // Muestra u oculta las opciones según el término de búsqueda
-                if (optionText.includes(searchTerm)) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
