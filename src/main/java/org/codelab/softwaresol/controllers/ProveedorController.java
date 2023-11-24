@@ -5,6 +5,7 @@ import org.codelab.softwaresol.model.entities.Ciudad;
 import org.codelab.softwaresol.model.entities.proveedor.Proveedor;
 import org.codelab.softwaresol.model.entities.repos.CiudadRepository;
 import org.codelab.softwaresol.model.entities.user.Usuario;
+import org.codelab.softwaresol.services.AuthService;
 import org.codelab.softwaresol.services.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,6 +29,11 @@ public class ProveedorController {
     private ProveedorService proveedorService;
     @Autowired
     private CiudadRepository ciudadRepository;
+    @Autowired
+    private AuthController auth;
+
+    @Autowired
+    private AuthService authService;
     @RequestMapping("/getSuppliers")
     public String getSupplier(Model model){
         List<Proveedor> listSuppliers = proveedorService.getSuppliers();
@@ -37,11 +43,17 @@ public class ProveedorController {
 
     @GetMapping(value = "/agregar")
     public String createSupplier(Model model){
-        Proveedor proveedor = new Proveedor();
-        List<Ciudad> listCities =ciudadRepository.findAll();
-        model.addAttribute("listCities", listCities);
-        model.addAttribute("proveedor", proveedor);
-        return "supplier/createSupplier";
+        String currentUser = auth.getCurrentUser();
+        String userRol = authService.getRolUser(currentUser);
+        if (userRol != null && userRol.equals("ADMIN")) {
+            Proveedor proveedor = new Proveedor();
+            List<Ciudad> listCities =ciudadRepository.findAll();
+            model.addAttribute("listCities", listCities);
+            model.addAttribute("proveedor", proveedor);
+            return "supplier/createSupplier";
+        } else {
+            return "error/500";
+        }
     }
     @PostMapping(value = "/agregar")
     public String saveSupplier(@ModelAttribute Proveedor proveedor){
@@ -51,12 +63,19 @@ public class ProveedorController {
 
     @RequestMapping("/editar/{id}")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id, Model modelo){
-        ModelAndView model = new ModelAndView("supplier/editSupplier");
-        Proveedor proveedor = proveedorService.getById(id);
-        List<Ciudad> listCities =ciudadRepository.findAll();
-        modelo.addAttribute("listCities", listCities);
-        model.addObject("proveedor", proveedor);
-        return model;
+        String currentUser = auth.getCurrentUser();
+        String userRol = authService.getRolUser(currentUser);
+        ModelAndView error = new ModelAndView("error/500");
+        if (userRol != null && userRol.equals("ADMIN")) {
+            ModelAndView model = new ModelAndView("supplier/editSupplier");
+            Proveedor proveedor = proveedorService.getById(id);
+            List<Ciudad> listCities =ciudadRepository.findAll();
+            modelo.addAttribute("listCities", listCities);
+            model.addObject("proveedor", proveedor);
+            return model;
+        } else {
+            return error;
+        }
     }
 
 

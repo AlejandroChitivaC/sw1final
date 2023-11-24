@@ -26,4 +26,11 @@ public class AuthService {
         }
         return "No se ha encontrado el rol";
     }
+    public String getUsername (String username){
+        Usuario usuario = usuarioRepository.findUserByUsername(username);
+        if (usuario != null) {
+            return usuario.getUsername();
+        }
+        return "No se ha encontrado el username";
+    }
 }

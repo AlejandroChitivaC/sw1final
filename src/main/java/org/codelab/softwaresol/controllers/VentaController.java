@@ -53,39 +53,55 @@ public class VentaController {
         Venta venta = new Venta();
         List<Cliente> listClients = clienteRepository.findAll();
         List<Producto> listProducts = productoService.obtenerProductos();
-
+        List<DetalleVenta> listDetalle = detalleVentaRepository.findAll();
+        model.addAttribute("listDetalle", listDetalle);
         model.addAttribute("venta", venta);
         model.addAttribute("listClients", listClients);
         model.addAttribute("listProducts", listProducts);
+
         return "sale/crearVenta";
     }
 
 
     @PostMapping(value = "/agregar")
-    public String saveSale(@ModelAttribute Venta venta, @RequestParam("productoIds") List<Integer> productoIds) {
+    public String saveSale(@ModelAttribute Venta venta,
+                           @RequestParam("productoIds") List<Integer> productoIds,
+                           @RequestParam("cantidades") List<Integer> cantidades) {
         // Guardar la venta en la base de datos
         Venta savedVenta = ventaService.createVenta(venta);
+        int totalVenta = 0;
 
         // Crear y asociar los detalles de venta con la venta guardada
-        for (Integer productoId : productoIds) {
+        for (int i = 0; i < productoIds.size(); i++) {
+            Integer productoId = productoIds.get(i);
+            Integer cantidad = cantidades.get(i);
+
             Optional<Producto> producto = productoService.obtenerProducto(productoId);
             DetalleVenta detalle = new DetalleVenta();
             detalle.setIdVenta(savedVenta);
             detalle.setIdProd(producto.get());
+            detalle.setCantidad(cantidad);
+            int subtotal = producto.get().getPrecioVenta() * cantidad;
+            detalle.setSubtotal(subtotal);
             // Puedes establecer otros atributos del detalle de venta según sea necesario
             detalleVentaRepository.save(detalle);
+            totalVenta += subtotal;
         }
+        ventaService.getByIdAndUpdateTotal(savedVenta.getId(), totalVenta);
 
-        return "redirect:/api/sale/getSales";
+        return "redirect:/api/sale/factura/" +savedVenta.getId();
     }
 
-    @RequestMapping("/editar/{id}")
-    public ModelAndView showEditForm(@PathVariable(name = "id") int id, Model modelo) {
-        ModelAndView model = new ModelAndView("sale/editSale");
+
+    @RequestMapping("/factura/{id}")
+    public ModelAndView showFactura(@PathVariable(name = "id") int id) {
+        ModelAndView model = new ModelAndView("sale/factura");
         Venta venta = ventaService.getById(id);
-        List<Cliente> listClients = clienteRepository.findAll();
-        modelo.addAttribute("listClients", listClients);
+        List<DetalleVenta> detalles =  detalleVentaRepository.findByIdVenta(id);
+
         model.addObject("venta", venta);
+        model.addObject("detalles", detalles);
+
         return model;
     }
 

@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Invoice</title>
-
+    <title>Rosita´s paper | Lista productos</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}" />
+
+    <!-- DataTables -->
+    <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}" />
+    <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}" />
+    <link rel="stylesheet" th:href="@{/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}" />
+
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}" />
+
 </head>
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -44,7 +48,7 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">Alexander Pierce</a>
@@ -90,7 +94,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a th:href="@{/api/product/getProducts}" class="nav-link">
+                        <a th:href="@{/api/product/getProducts}" class="nav-link active">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Productos
@@ -108,7 +112,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/api/sale/getSales" class="nav-link active">
+                        <a href="/api/sale/getSales" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Ventas
@@ -133,6 +137,12 @@
                     <div class="col-sm-6">
                         <h1>Invoice</h1>
                     </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Invoice</li>
+                        </ol>
+                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -141,110 +151,60 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="callout callout-info">
-                            <h5><i class="fas fa-info"></i> Note:</h5>
-                            This page has been enhanced for printing. Click the print button at the bottom of the
-                            invoice to test.
-                        </div>
-
-
                         <!-- Main content -->
                         <div class="invoice p-3 mb-3">
                             <!-- title row -->
                             <div class="row">
                                 <div class="col-12">
                                     <h4>
-                                        <i class="fas fa-globe"></i> AdminLTE, Inc.
-                                        <small class="float-right">Date: 2/10/2014</small>
+                                        <i class="fas fa-globe"></i> Rosita´s paper.
+                                        <small class="float-right" th:text="${venta.fechaVenta}"></small>
                                     </h4>
                                 </div>
                                 <!-- /.col -->
                             </div>
                             <!-- info row -->
-                            <form th:object="${venta}" th:action="@{/api/sale/agregar}" method="post">
-                                <!-- Campos de venta -->
-                                <div class="form-group">
-                                    <label>Cliente:</label>
-                                    <select th:field="*{cliente.id}" id="clienteSelect">
-                                        <option value="">Seleccione un cliente</option>
-                                        <option th:each="client : ${listClients}" th:value="${client.id}"
-                                                th:text="${client.nit}"></option>
-                                    </select>
+                            <div class="row invoice-info">
+                                <div class="col-sm-4 invoice-col">
+                                    From
+                                    <address>
+                                        <strong>Rosita´s paper.</strong><br>
+                                        Calle 154a #94-80<br>
+                                        Bogotá D.C<br>
+                                        Phone: 305 382 0667<br>
+                                        Email: rosita@rositawapa.com
+                                    </address>
                                 </div>
-                                <div class="form-group">
-                                    <label>Fecha:</label>
-                                    <input type="date" name="fechaVenta" th:field="*{fechaVenta}" class="form-control"
-                                           required>
+                                <!-- /.col -->
+                                <div class="col-sm-4 invoice-col">
+                                    To
+                                    <address>
+                                        <strong th:text="${venta.cliente.nombre}"></strong><br>
+                                        Nit o cedula: <span th:text="${venta.cliente.nit}"></span><br>                                    </address>
                                 </div>
-                                    <!--<div class="form-group">
-                                        <label>Total venta:</label>
-                                        <input type="number" name="totalVenta" th:field="*{totalVenta}" class="form-control"
-                                               placeholder="Total venta" required>
-                                    </div>-->
-
-                                <!-- Campos de detalles -->
-                                <!-- Campo de búsqueda -->
-                                <input type="text" id="searchProducts" class="form-control"
-                                       placeholder="Buscar productos">
-
-                                <!-- Campos de detalles -->
-                                <div class="row">
-                                    <div th:each="producto : ${listProducts} " class="col-md-6 product-item">
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title" th:text="${producto.nombreProducto}"></h5>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="checkbox" name="productoIds" th:value="${producto.id}" class="form-check-input">
-                                                    <label class="form-check-label"></label>
-                                                    <label>Cantidad:</label>
-                                                    <input type="number" name="cantidades" class="form-control">
-                                                </div>
-
-                                                <!-- Puedes agregar más campos según sea necesario -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Botones de guardar y cancelar -->
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                <a th:href="@{/api/sale/getSales}" class="btn btn-secondary">Cancelar</a>
-                            </form>
-
-
+                                <!-- /.col -->
+                                <!-- /.col -->
+                            </div>
                             <!-- /.row -->
 
                             <!-- Table row -->
                             <div class="row">
                                 <div class="col-12 table-responsive">
-                                    <table class="table table-bordered table-striped">
+                                    <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Nombre del producto</th>
-                                            <th scope="col">Precio de venta</th>
-                                            <th scope="col">Stock mínimo</th>
-                                            <th scope="col">Stock máximo</th>
-                                            <th scope="col">Existencia del producto</th>
-                                            <th scope="col">Iva del producto</th>
-                                            <th scope="col">Estado</th>
-
+                                            <th>ID producto</th>
+                                            <th>Nombre del producto</th>
+                                            <th>cantidad</th>
+                                            <th>subtotal</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-
-                                        <tr th:each="product :${listProducts}">
-                                            <td th:text="${product.id}"></td>
-                                            <td th:text="${product.nombreProducto}"></td>
-                                            <td th:text=" '$' + ${product.precioVenta}"></td>
-                                            <td th:text="${product.stockMin}"></td>
-                                            <td th:text="${product.stockMax}"></td>
-                                            <td th:text="${product.existencia}"></td>
-                                            <td th:text="${product.iva + '%'}"></td>
-                                            <td th:text="${product.estado}"
-                                                th:style="${product.estado eq 'A' ? 'color: green;' : 'color: red;'}"></td>
-
+                                        <tr th:each="detalle : ${detalles}">
+                                            <td th:text="${detalle.idProd.id}"></td>
+                                            <td th:text="${detalle.idProd.nombreProducto}"></td>
+                                            <td th:text="${detalle.cantidad}"></td>
+                                            <td th:text="${detalle.subtotal}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -257,10 +217,10 @@
                                 <!-- accepted payments column -->
                                 <div class="col-6">
                                     <p class="lead">Payment Methods:</p>
-                                    <img src="../../dist/img/credit/visa.png" alt="Visa">
-                                    <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-                                    <img src="../../dist/img/credit/american-express.png" alt="American Express">
-                                    <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
+                                    <img src="/dist/img/credit/visa.png" alt="Visa">
+                                    <img src="/dist/img/credit/mastercard.png" alt="Mastercard">
+                                    <img src="/dist/img/credit/american-express.png" alt="American Express">
+                                    <img src="/dist/img/credit/paypal2.png" alt="Paypal">
 
                                     <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
                                         Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning
@@ -275,22 +235,16 @@
 
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <tr>
-                                                <th style="width:50%">Subtotal:</th>
-                                                <td>$250.30</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Tax (9.3%)</th>
-                                                <td>$10.34</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Shipping:</th>
-                                                <td>$5.80</td>
-                                            </tr>
+                                            <thead>
                                             <tr>
                                                 <th>Total:</th>
-                                                <td>$265.24</td>
                                             </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="venta : ${venta}">
+                                                <td th:text="${venta.totalVenta}"></td>
+                                            </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -301,7 +255,7 @@
                             <!-- this row will not appear when printing -->
                             <div class="row no-print">
                                 <div class="col-12">
-                                    <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i
+                                    <a th:href="@{factura-print.html}" rel="noopener" target="_blank" class="btn btn-default"><i
                                             class="fas fa-print"></i> Print</a>
                                     <button type="button" class="btn btn-success float-right"><i
                                             class="far fa-credit-card"></i> Submit
@@ -339,32 +293,14 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../static/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../static/plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="../../static/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        // Filtrar productos en tiempo real
-        $('#searchProducts').on('input', function () {
-            var searchTerm = $(this).val().toLowerCase();
-
-            $('.product-item').each(function () {
-                var productName = $(this).text().toLowerCase();
-                if (productName.includes(searchTerm)) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-    });
-</script>
-
+<script src="../../static/dist/js/demo.js"></script>
 </body>
 </html>

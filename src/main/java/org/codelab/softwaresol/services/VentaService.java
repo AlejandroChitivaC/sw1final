@@ -19,7 +19,7 @@ public class VentaService {
     }
 
     public Optional<Venta> getVenta(int idVenta){
-        return ventaRepository.findById(idVenta);
+        return Optional.ofNullable(ventaRepository.findById(idVenta));
     }
 
     public Venta updateVenta(Venta venta){
@@ -36,7 +36,16 @@ public class VentaService {
         ventaRepository.deleteById(idVenta);
     }
 
-    public Venta getById(int id){
-        return ventaRepository.findById(id).get();
+    public Venta getByIdAndUpdateTotal(int id, int total) {
+        Venta venta = ventaRepository.findById(id);
+        if (venta != null) {
+            venta.setTotalVenta(total);
+            ventaRepository.save(venta);
+        }
+        return venta;
+    }
+
+    public Venta getById(int id) {
+        return ventaRepository.findById(id);
     }
 }
