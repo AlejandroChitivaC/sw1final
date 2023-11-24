@@ -154,11 +154,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Detalles de los productos</h3>
+                                <button onclick="generarPDF()">Generar Informe</button>
+
+
                                 <a th:href="@{/api/product/agregar}" class="btn btn-primary float-right">Agregar un nuevo producto</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered table-striped">
+                                <table id="tablaProducto"  class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -184,7 +187,7 @@
                                         <td th:text="${product.iva + '%'}"></td>
                                         <td th:text="${product.estado}"
                                             th:style="${product.estado eq 'A' ? 'color: green;' : 'color: red;'}"></td>
-                                        <td>
+                                        <td class="acciones">
                                             <a class="btn btn-primary" th:href="@{'/api/product/editar/' + ${product.id}}">Editar</a>
                                         </td>
                                     </tr>
@@ -238,6 +241,21 @@
 <script src="../../static/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../static/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>-->
 <!-- AdminLTE App -->
+<script>
+    function generarPDF() {
+        const element = document.getElementById('tablaProducto');
+        const options = { fileName: 'informe_producto' };
+        // Obtén todas las filas y excluye las celdas con la clase "acciones"
+        const rows = element.querySelectorAll('.acciones');
+        rows.forEach(accionesCell => {
+            accionesCell.remove(); // Excluye la celda con la clase "acciones"
+        });
+
+        html2pdf(element, options);
+    }
+</script>
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
 <script src="../../static/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../static/dist/js/demo.js"></script>

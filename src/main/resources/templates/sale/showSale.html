@@ -154,11 +154,13 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Detalles ventas</h3>
+                                <button onclick="generarPDF()">Generar Informe</button>
+
                                 <a th:href="@{/api/sale/agregar}" class="btn btn-primary float-right">Hacer una venta</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered table-striped">
+                                <table id="tablaVenta" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -213,6 +215,16 @@
 </div>
 <!-- ./wrapper -->
 
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+<script>
+    function generarPDF() {
+        const element = document.getElementById('tablaVenta');
+        const options = { fileName: 'informe_venta' };
+        // Obtén todas las filas y excluye las celdas con la clase "acciones"
+
+        html2pdf(element, options);
+    }
+</script>
 <!-- jQuery -->
 <script src="../../static/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
