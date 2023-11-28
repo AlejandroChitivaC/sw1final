@@ -181,27 +181,27 @@
 
                                 <!-- Campos de detalles -->
                                 <!-- Campo de búsqueda -->
-                                <input type="text" id="searchProducts" class="form-control mb-4"
-                                       placeholder="Buscar productos">
 
                                 <!-- Campos de detalles -->
-                                <div class="row">
-                                    <div th:each="producto : ${listProducts} " class="col-md-6 product-item">
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title" th:text="${producto.nombreProducto}"></h5>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="checkbox" name="productoIds" th:value="${producto.id}" class="form-check-input ">
-                                                    <label class="form-check-label"></label>
-                                                    <label>Cantidad:</label>
-                                                    <input type="number" name="cantidades" class="form-control">
-                                                </div>
+                                <input type="text" id="searchProducts" class="form-control mb-4" placeholder="Buscar productos">
 
-                                                <!-- Puedes agregar más campos según sea necesario -->
-                                            </div>
-                                        </div>
-                                    </div>
+                                <!-- Contenedor de la tabla -->
+                                <div class="product-item">
+                                    <table class="table table-bordered table-striped">
+                                        <tr th:each="product : ${listProducts}">
+                                            <td>
+                                                <input type="checkbox" name="productoIds" th:value="${product.getId()}">
+                                            </td>
+                                            <td th:text="${product.nombreProducto}"></td>
+                                            <td>Cantidad:
+                                                <select class="form-control" name="cantidades" th:value="${product.getId()}">
+                                                    <option th:each="j : ${#numbers.sequence(1, 10)}" th:value="${j}" th:text="${j}"></option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
+
 
 
                                 <!-- Botones de guardar y cancelar -->
@@ -351,7 +351,7 @@
         $('#searchProducts').on('input', function () {
             var searchTerm = $(this).val().toLowerCase();
 
-            $('.product-item').each(function () {
+            $('.product-item table tr').each(function () {
                 var productName = $(this).text().toLowerCase();
                 if (productName.includes(searchTerm)) {
                     $(this).show();
@@ -362,6 +362,7 @@
         });
     });
 </script>
+
 <script>
     $(document).ready(function() {
         // Obtén el elemento select y el campo de búsqueda

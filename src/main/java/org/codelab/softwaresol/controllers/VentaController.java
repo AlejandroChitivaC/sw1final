@@ -77,32 +77,35 @@ public class VentaController {
 
     @PostMapping(value = "/agregar")
     public String saveSale(@ModelAttribute Venta venta,
-                           @RequestParam("productoIds") List<Integer> productoIds,
-                           @RequestParam("cantidades") List<Integer> cantidades) {
+                           @RequestParam("productoIds") Integer[] productoIds,
+                           @RequestParam("cantidades") Integer[] cantidades) {
         // Guardar la venta en la base de datos
         Venta savedVenta = ventaService.createVenta(venta);
         int totalVenta = 0;
 
         // Crear y asociar los detalles de venta con la venta guardada
-        for (int i = 0; i < productoIds.size(); i++) {
-            Integer productoId = productoIds.get(i);
-            Integer cantidad = cantidades.get(i);
+        for (int i = 0; i < productoIds.length; i++) {
+            Integer productoId = productoIds[i];
+            Integer cantidad = cantidades[i];
 
-            Optional<Producto> producto = productoService.obtenerProducto(productoId);
-            DetalleVenta detalle = new DetalleVenta();
-            detalle.setIdVenta(savedVenta);
-            detalle.setIdProd(producto.get());
-            detalle.setCantidad(cantidad);
-            int subtotal = producto.get().getPrecioVenta() * cantidad;
-            detalle.setSubtotal(subtotal);
-            // Puedes establecer otros atributos del detalle de venta según sea necesario
-            detalleVentaRepository.save(detalle);
-            totalVenta += subtotal;
+            if (cantidad != null && cantidad > 0) {
+                Optional<Producto> producto = productoService.obtenerProducto(productoId);
+                DetalleVenta detalle = new DetalleVenta();
+                detalle.setIdVenta(savedVenta);
+                detalle.setIdProd(producto.get());
+                detalle.setCantidad(cantidad);
+                int subtotal = producto.get().getPrecioVenta() * cantidad;
+                detalle.setSubtotal(subtotal);
+                // Puedes establecer otros atributos del detalle de venta según sea necesario
+                detalleVentaRepository.save(detalle);
+                totalVenta += subtotal;
+            }
         }
         ventaService.getByIdAndUpdateTotal(savedVenta.getId(), totalVenta);
 
-        return "redirect:/api/sale/factura/" +savedVenta.getId();
+        return "redirect:/api/sale/factura/" + savedVenta.getId();
     }
+
 
 
     @RequestMapping("/factura/{id}")
