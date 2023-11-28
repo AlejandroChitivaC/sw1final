@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rosita´s paper | Lista productos</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}" />
+    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}"/>
 
     <!-- DataTables -->
-    <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}" />
-    <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}" />
-    <link rel="stylesheet" th:href="@{/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}" />
+    <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}"/>
 
     <!-- Theme style -->
-    <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}" />
+    <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}"/>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -121,6 +122,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/api/sale/getSales" class="nav-link">
+                            <i></i>
+                            <a class="btn btn-danger" href="/index.html">
+                                Cerrar Sesion
+                            </a>
+                        </a>
+                    </li>
 
                 </ul>
             </nav>
@@ -153,15 +162,17 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Detalles de los productos</h3>
-                                <button onclick="generarPDF()">Generar Informe</button>
+                                <h3 class="card-title mt-2">Detalles de los productos</h3>
+                                <button class="btn btn-success ml-3 mb-0 mt-0" onclick="generarPDF()">Generar Informe
+                                </button>
 
 
-                                <a th:href="@{/api/product/agregar}" class="btn btn-primary float-right">Agregar un nuevo producto</a>
+                                <a th:href="@{/api/product/agregar}" class="btn btn-success float-right">Agregar un
+                                    nuevo producto</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="tablaProducto"  class="table table-bordered table-striped">
+                                <table id="tablaProducto" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -188,7 +199,8 @@
                                         <td th:text="${product.estado}"
                                             th:style="${product.estado eq 'A' ? 'color: green;' : 'color: red;'}"></td>
                                         <td class="acciones">
-                                            <a class="btn btn-primary" th:href="@{'/api/product/editar/' + ${product.id}}">Editar</a>
+                                            <a class="btn btn-primary"
+                                               th:href="@{'/api/product/editar/' + ${product.id}}">Editar</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -208,7 +220,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2023  CodeLab .</strong>
+        <strong>Copyright &copy; 2023 CodeLab .</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 1
@@ -244,7 +256,7 @@
 <script>
     function generarPDF() {
         const element = document.getElementById('tablaProducto');
-        const options = { fileName: 'informe_producto' };
+        const options = {fileName: 'informe_producto'};
         // Obtén todas las filas y excluye las celdas con la clase "acciones"
         const rows = element.querySelectorAll('.acciones');
         rows.forEach(accionesCell => {

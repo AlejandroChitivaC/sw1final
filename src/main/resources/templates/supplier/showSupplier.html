@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rosita´s paper | Lista proveedores</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}" />
+    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}"/>
 
     <!-- DataTables -->
-    <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}" />
-    <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}" />
-    <link rel="stylesheet" th:href="@{/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}" />
+    <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}"/>
 
     <!-- Theme style -->
-    <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}" />
+    <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}"/>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -121,6 +122,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/api/sale/getSales" class="nav-link">
+                            <i></i>
+                            <a class="btn btn-danger" href="/index.html">
+                                Cerrar Sesion
+                            </a>
+                        </a>
+                    </li>
 
                 </ul>
             </nav>
@@ -154,7 +163,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Información de proveedores</h3>
-                                <a th:href="@{/api/supplier/agregar}" class="btn btn-primary float-right">Agregar nuevo proveedor</a>
+                                <a th:href="@{/api/supplier/agregar}" class="btn btn-success float-right">Agregar nuevo
+                                    proveedor</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -185,7 +195,8 @@
                                         <td th:text="${supplier.estado}"
                                             th:style="${supplier.estado eq 'A' ? 'color: green;' : 'color: red;'}"></td>
                                         <td>
-                                            <a class="btn btn-primary" th:href="@{'/api/supplier/editar/' + ${supplier.id}}">Editar</a>
+                                            <a class="btn btn-primary"
+                                               th:href="@{'/api/supplier/editar/' + ${supplier.id}}">Editar</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -205,7 +216,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2023  CodeLab .</strong>
+        <strong>Copyright &copy; 2023 CodeLab .</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 1
