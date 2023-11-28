@@ -32,6 +32,9 @@ public class UsuarioController {
 
     @GetMapping("/getUsers")
     public String getUsuarios(Model model) {
+        String currentUser = auth.getCurrentUser();
+        String username = authService.getUsername(currentUser);
+        model.addAttribute("username", username);
         List<Usuario> listUsers = usuarioService.getUsuarios();
         model.addAttribute("listUsers", listUsers);
         return "user/showUser";
@@ -41,6 +44,8 @@ public class UsuarioController {
     public String createUser(Model model) throws AccessDeniedException {
         String currentUser = auth.getCurrentUser();
         String userRol = authService.getRolUser(currentUser);
+        String username = authService.getUsername(currentUser);
+        model.addAttribute("username", username);
         if (userRol != null && userRol.equals("ADMIN")) {
             Usuario usuario = new Usuario();
             model.addAttribute("usuario", usuario);
@@ -57,9 +62,11 @@ public class UsuarioController {
     }
 
     @RequestMapping("/editar/{id}")
-    public ModelAndView showEditForm(@PathVariable(name = "id") int id){
+    public ModelAndView showEditForm(@PathVariable(name = "id") int id, Model modelo){
         String currentUser = auth.getCurrentUser();
         String userRol = authService.getRolUser(currentUser);
+        String username = authService.getUsername(currentUser);
+        modelo.addAttribute("username", username);
         ModelAndView error = new ModelAndView("error/500");
         if (userRol != null && userRol.equals("ADMIN")) {
             ModelAndView model = new ModelAndView("user/editUser");

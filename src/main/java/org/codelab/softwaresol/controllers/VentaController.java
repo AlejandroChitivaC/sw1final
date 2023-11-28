@@ -7,6 +7,7 @@ import org.codelab.softwaresol.model.entities.producto.Producto;
 import org.codelab.softwaresol.model.entities.repos.ClienteRepository;
 import org.codelab.softwaresol.model.entities.repos.DetalleVentaRepository;
 import org.codelab.softwaresol.model.entities.repos.ProductoRepository;
+import org.codelab.softwaresol.services.AuthService;
 import org.codelab.softwaresol.services.ProductoService;
 import org.codelab.softwaresol.services.VentaService;
 import org.slf4j.Logger;
@@ -35,13 +36,20 @@ public class VentaController {
     @Autowired
     private DetalleVentaRepository detalleVentaRepository;
     @Autowired
-    private ProductoRepository productoRepository;
+    private AuthController auth;
+
+    @Autowired
+    private AuthService authService;
 
 
     @GetMapping("/getSales")
     public String getSales(Model model) {
+        String currentUser = auth.getCurrentUser();
+        String username = authService.getUsername(currentUser);
+
         List<Venta> listSales = ventaService.getVentas();
         List<DetalleVenta> listDetalle = detalleVentaRepository.findAll();
+        model.addAttribute("username", username);
         model.addAttribute("listSales", listSales);
         model.addAttribute("listDetalle", listDetalle);
 
@@ -51,9 +59,13 @@ public class VentaController {
     @GetMapping(value = "/agregar")
     public String createSale(Model model) {
         Venta venta = new Venta();
+
         List<Cliente> listClients = clienteRepository.findAll();
         List<Producto> listProducts = productoService.obtenerProductos();
         List<DetalleVenta> listDetalle = detalleVentaRepository.findAll();
+        String currentUser = auth.getCurrentUser();
+        String username = authService.getUsername(currentUser);
+        model.addAttribute("username", username);
         model.addAttribute("listDetalle", listDetalle);
         model.addAttribute("venta", venta);
         model.addAttribute("listClients", listClients);

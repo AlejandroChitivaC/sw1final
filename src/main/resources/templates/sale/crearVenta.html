@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Invoice</title>
+    <title>Venta</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -141,21 +141,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="callout callout-info">
-                            <h5><i class="fas fa-info"></i> Note:</h5>
-                            This page has been enhanced for printing. Click the print button at the bottom of the
-                            invoice to test.
-                        </div>
-
-
                         <!-- Main content -->
                         <div class="invoice p-3 mb-3">
                             <!-- title row -->
                             <div class="row">
                                 <div class="col-12">
                                     <h4>
-                                        <i class="fas fa-globe"></i> AdminLTE, Inc.
-                                        <small class="float-right">Date: 2/10/2014</small>
+                                        <i class="fas fa-globe"></i> Rosita's paper.
+                                        <small class="float-right"></small>
                                     </h4>
                                 </div>
                                 <!-- /.col -->
@@ -164,8 +157,12 @@
                             <form th:object="${venta}" th:action="@{/api/sale/agregar}" method="post">
                                 <!-- Campos de venta -->
                                 <div class="form-group">
+                                    <label>Cédula o nit del cliente:</label>
+                                    <div class="input-group-append">
+                                        <input type="search" class="form-control" placeholder="Buscar cliente por cédula o nit" aria-label="Buscar ciudad" id="searchCiudad">
+                                    </div>
                                     <label>Cliente:</label>
-                                    <select th:field="*{cliente.id}" id="clienteSelect">
+                                    <select th:field="*{cliente.id}" id="ciudadSelect">
                                         <option value="">Seleccione un cliente</option>
                                         <option th:each="client : ${listClients}" th:value="${client.id}"
                                                 th:text="${client.nit}"></option>
@@ -354,7 +351,7 @@
         $('#searchProducts').on('input', function () {
             var searchTerm = $(this).val().toLowerCase();
 
-            $('.product-item').each(function () {
+            $('.client-item').each(function () {
                 var productName = $(this).text().toLowerCase();
                 if (productName.includes(searchTerm)) {
                     $(this).show();
@@ -365,6 +362,32 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        // Obtén el elemento select y el campo de búsqueda
+        var ciudadSelect = $('#ciudadSelect');
+        var searchCiudad = $('#searchCiudad');
 
+        // Obtén todas las opciones del select
+        var opcionesCiudad = ciudadSelect.find('option');
+
+        // Escucha el evento de entrada en el campo de búsqueda
+        searchCiudad.on('input', function() {
+            var searchTerm = $(this).val().toLowerCase();
+
+            // Itera sobre las opciones del select y muestra/oculta según el término de búsqueda
+            opcionesCiudad.each(function() {
+                var optionText = $(this).text().toLowerCase();
+
+                // Muestra u oculta las opciones según el término de búsqueda
+                if (optionText.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

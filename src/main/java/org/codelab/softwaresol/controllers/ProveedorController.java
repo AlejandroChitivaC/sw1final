@@ -36,6 +36,9 @@ public class ProveedorController {
     private AuthService authService;
     @RequestMapping("/getSuppliers")
     public String getSupplier(Model model){
+        String currentUser = auth.getCurrentUser();
+        String username = authService.getUsername(currentUser);
+        model.addAttribute("username", username);
         List<Proveedor> listSuppliers = proveedorService.getSuppliers();
         model.addAttribute("listSuppliers", listSuppliers);
         return "supplier/showSupplier";
@@ -45,6 +48,8 @@ public class ProveedorController {
     public String createSupplier(Model model){
         String currentUser = auth.getCurrentUser();
         String userRol = authService.getRolUser(currentUser);
+        String username = authService.getUsername(currentUser);
+        model.addAttribute("username", username);
         if (userRol != null && userRol.equals("ADMIN")) {
             Proveedor proveedor = new Proveedor();
             List<Ciudad> listCities =ciudadRepository.findAll();
@@ -65,6 +70,8 @@ public class ProveedorController {
     public ModelAndView showEditForm(@PathVariable(name = "id") int id, Model modelo){
         String currentUser = auth.getCurrentUser();
         String userRol = authService.getRolUser(currentUser);
+        String username = authService.getUsername(currentUser);
+        modelo.addAttribute("username", username);
         ModelAndView error = new ModelAndView("error/500");
         if (userRol != null && userRol.equals("ADMIN")) {
             ModelAndView model = new ModelAndView("supplier/editSupplier");

@@ -35,6 +35,9 @@ public class ProductoController {
 
     @GetMapping("/getProducts")
     public String getProducts(Model model) {
+        String currentUser = auth.getCurrentUser();
+        String username = authService.getUsername(currentUser);
+        model.addAttribute("username", username);
         List<Producto> listProducts = productoService.obtenerProductos();
         model.addAttribute("listProducts", listProducts);
         return "product/showProduct";
@@ -61,9 +64,11 @@ public class ProductoController {
     }
 
     @RequestMapping("/editar/{id}")
-    public ModelAndView showEditForm(@PathVariable(name = "id") int id){
+    public ModelAndView showEditForm(@PathVariable(name = "id") int id, Model modelo){
         String currentUser = auth.getCurrentUser();
         String userRol = authService.getRolUser(currentUser);
+        String username = authService.getUsername(currentUser);
+        modelo.addAttribute("username", username);
         ModelAndView error = new ModelAndView("error/500");
         if (userRol != null && userRol.equals("ADMIN")) {
             ModelAndView model = new ModelAndView("product/editProduct");
