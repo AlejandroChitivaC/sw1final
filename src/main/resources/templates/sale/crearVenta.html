@@ -162,7 +162,7 @@
                                         <input type="search" class="form-control" placeholder="Buscar cliente por cédula o nit" aria-label="Buscar ciudad" id="searchCiudad">
                                     </div>
                                     <label>Cliente:</label>
-                                    <select th:field="*{cliente.id}" id="ciudadSelect">
+                                    <select th:field="*{cliente.id}" class="form-control" id="ciudadSelect">
                                         <option value="">Seleccione un cliente</option>
                                         <option th:each="client : ${listClients}" th:value="${client.id}"
                                                 th:text="${client.nit}"></option>
@@ -181,7 +181,7 @@
 
                                 <!-- Campos de detalles -->
                                 <!-- Campo de búsqueda -->
-                                <input type="text" id="searchProducts" class="form-control"
+                                <input type="text" id="searchProducts" class="form-control mb-4"
                                        placeholder="Buscar productos">
 
                                 <!-- Campos de detalles -->
@@ -191,7 +191,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title" th:text="${producto.nombreProducto}"></h5>
                                                 <div class="form-check form-check-inline">
-                                                    <input type="checkbox" name="productoIds" th:value="${producto.id}" class="form-check-input">
+                                                    <input type="checkbox" name="productoIds" th:value="${producto.id}" class="form-check-input ">
                                                     <label class="form-check-label"></label>
                                                     <label>Cantidad:</label>
                                                     <input type="number" name="cantidades" class="form-control">
@@ -351,7 +351,7 @@
         $('#searchProducts').on('input', function () {
             var searchTerm = $(this).val().toLowerCase();
 
-            $('.client-item').each(function () {
+            $('.product-item').each(function () {
                 var productName = $(this).text().toLowerCase();
                 if (productName.includes(searchTerm)) {
                     $(this).show();

@@ -171,7 +171,7 @@
                                                 <div class="form-group">
                                                     <label>Ciudad:</label>
                                                     <div class="input-group-append">
-                                                        <input type="search" class="form-control" placeholder="Buscar ciudad" aria-label="Buscar ciudad" id="searchCiudad">
+                                                        <input type="search" class="form-control mb-3" placeholder="Buscar ciudad" aria-label="Buscar ciudad" id="searchCiudad">
                                                     </div>
                                                     <select name="ciudad" th:field="*{idCiudad}" class="form-control" id="ciudadSelect">
                                                         <option th:each="ciudad : ${listCities}" th:value="${ciudad.id}"
